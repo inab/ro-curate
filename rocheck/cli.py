@@ -13,14 +13,31 @@
 #   limitations under the License.
 
 import sys
-from argparse import ArgumentParser
+import argparse
 from rocheck import VERSION
+from rocheck.validation import validate
+
+
+def parse_arguments():
+    """
+    This procedure parses the program's command line arguments and returns the
+    resulting `argparse` namespace.
+    """
+    parser = argparse.ArgumentParser(description='Validate research objects.')
+
+    # Add arguments
+    parser.add_argument(
+        '--version', action='version', version=VERSION)
+    parser.add_argument(
+        'paths', nargs='+', help='paths to research objects to be validated')
+
+    return parser.parse_args()
 
 
 def main():
-    args = ArgumentParser(description='Validate research objects.')
-    args.add_argument('--version', action='version', version=VERSION)
-    args.parse_args(sys.argv)
+    args = parse_arguments()
+    for path in args.paths:
+        validate(path)
 
 
 if __name__ == '__main__':
