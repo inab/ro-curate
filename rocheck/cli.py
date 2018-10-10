@@ -13,10 +13,14 @@
 #   limitations under the License.
 
 import sys
+from argparse import ArgumentParser
+from rocheck import VERSION
 
 
 def main():
-    print('Hello world!')
+    args = ArgumentParser(description='Validate research objects.')
+    args.add_argument('--version', action='version', version=VERSION)
+    args.parse_args(sys.argv)
 
 
 if __name__ == '__main__':
