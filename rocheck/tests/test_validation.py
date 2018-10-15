@@ -13,17 +13,25 @@
 #   limitations under the License.
 
 import unittest
-from rocheck.validation import read_manifest
+from json import JSONDecodeError
+from rocheck.validation import *
 from . import data_file
 
 
 class TestValidation(unittest.TestCase):
-    def test_read_manifest_for_empty_bundle(self):
-        path = data_file('empty')
-        data = read_manifest(path)
-        self.assertEqual(data, '')
+    def test_find_manifest_for_empty_bundle(self):
+        with find_manifest(data_file('empty')) as manifest:
+            data = manifest.read()
+            assert data == ''
 
-    def test_read_manifest_for_empty_json(self):
+    def test_find_manifest_for_empty_json(self):
         path = data_file('empty/.ro/manifest.json')
-        data = read_manifest(path)
-        self.assertEqual(data, '')
+        with find_manifest(path) as manifest:
+            data = manifest.read()
+            assert data == ''
+
+    def test_validate_fails_for_empty_bundle(self):
+        with self.assertRaises(JSONDecodeError):
+            validate(data_file('empty'))
+
+

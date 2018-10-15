@@ -15,7 +15,8 @@
 import sys
 import argparse
 from rocheck import VERSION
-from rocheck.validation import validate
+from rocheck.validation import validate, ValidationError
+from json import JSONDecodeError
 
 
 def parse_arguments():
@@ -37,7 +38,13 @@ def parse_arguments():
 def main():
     args = parse_arguments()
     for path in args.paths:
-        validate(path)
+        try:
+            validate(path)
+        except (ValidationError, JSONDecodeError) as err:
+            print(
+                f'Error validating research object at \'{ro_path}\': {err}',
+                file=sys.stderr,
+            )
 
 
 if __name__ == '__main__':

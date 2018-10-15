@@ -13,7 +13,7 @@
 #   limitations under the License.
 
 import os
-import sys
+import json
 
 _MANIFEST_RELATIVE_PATHS = [
     '.ro/manifest.json',
@@ -25,18 +25,38 @@ class ValidationError(Exception):
     pass
 
 
-def read_manifest(ro_path):
+def _ro_bundle_file_path(ro_path, file_path):
+    return os.path.abspath(os.path.join(ro_path, file_path))
+
+
+def _ro_bundle_file(ro_path, file_path):
+    """
+    Helper function to get a file in an research object bundle.
+    Throws the same exceptions as `open()` if there is a problem opening the
+    file.
+    :param ro_path: path to the root directory of the research object
+    :param file_path: relative path to the file within the research object
+    :return: `file` object for the file.
+    """
+    file_abspath = _ro_bundle_file_path(ro_path, file_path)
+    return open(file_abspath)
+
+
+def find_manifest(ro_path):
+    """
+    Finds the most likely manifest file in a research object.
+    If a suitable file is not found a `ValidationError` is thrown.
+    :param ro_path: path to the root directory of the research object
+    :return: `file` object for the most suitable manifest file
+    """
     # Create a list of suitable absolute paths to tests for a manifest
     manifest_paths = list(map(
-        lambda p: os.path.normpath(os.path.join(os.getcwd(), ro_path, p)),
-        _MANIFEST_RELATIVE_PATHS,
-    ))
+        lambda p: _ro_bundle_file_path(ro_path, p), _MANIFEST_RELATIVE_PATHS))
 
     # Try each path in `manifest_paths` in order until a manifest is found
     for file_path in manifest_paths:
         try:
-            with open(file_path, 'r') as file:
-                return file.read()
+            return open(file_path, 'r')
         except (FileNotFoundError, IsADirectoryError, NotADirectoryError):
             continue
 
@@ -47,14 +67,11 @@ def read_manifest(ro_path):
 
 def validate(ro_path):
     """
-    Validates the research object at the path `ro_path`, printing the results.
-    :param ro_path: the path to the root directory of the research object
+    Validates the research object at the path `ro_path`, throwing an
+    exception if an error is encountered or returning a list
+    of warnings if successful.
+    :param ro_path: path to the root directory of the research object
     """
-    try:
-        manifest_data = read_manifest(ro_path)
+    with find_manifest(ro_path) as manifest:
+        manifest_data = json.load(manifest)
         print(manifest_data)
-    except ValidationError as err:
-        print(
-            f'Error validating research object at \'{ro_path}\': {err}',
-            file=sys.stderr,
-        )
