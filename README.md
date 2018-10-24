@@ -1,3 +1,3 @@
-# ro-check
+# ro-curate
 
-ro-check is a tool for validating research objects.
+ro-curate is a tool for validating and refining research objects.

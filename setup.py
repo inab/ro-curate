@@ -2,7 +2,7 @@
 
 import os
 from setuptools import setup, find_packages
-from rocheck import VERSION
+from rocurate import VERSION
 
 
 def read_file(path):
@@ -10,13 +10,13 @@ def read_file(path):
 
 
 setup(
-    name='ro-check',
+    name='ro-curate',
     version=VERSION,
     packages=find_packages(),
     license='Apache Licence 2',
-    description='tool for validating research objects',
+    description='tool for validating and refining research objects',
     long_description=read_file('README.md'),
     entry_points={
-        'console_scripts': ['ro-check=rocheck.cli:main'],
+        'console_scripts': ['rocurate=rocurate.cli:main'],
     }
 )

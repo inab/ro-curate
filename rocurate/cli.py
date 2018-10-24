@@ -14,8 +14,8 @@
 
 import sys
 import argparse
-from rocheck import VERSION
-from rocheck.validation import validate, ValidationError
+from rocurate import VERSION
+from rocurate.validation import validate, ValidationError
 from json import JSONDecodeError
 
 

@@ -14,7 +14,7 @@
 
 import unittest
 from json import JSONDecodeError
-from rocheck.validation import *
+from rocurate.validation import *
 from . import data_file
 
 
