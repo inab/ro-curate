@@ -13,7 +13,6 @@
 #   limitations under the License.
 
 import unittest
-from json import JSONDecodeError
 from rocurate.validation import *
 from . import data_file
 
@@ -31,7 +30,7 @@ class TestValidation(unittest.TestCase):
             assert data == ''
 
     def test_validate_fails_for_empty_bundle(self):
-        with self.assertRaises(JSONDecodeError):
+        with self.assertRaises(Exception):
             validate(data_file('empty'))
 
 

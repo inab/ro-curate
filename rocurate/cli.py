@@ -30,19 +30,19 @@ def parse_arguments():
     parser.add_argument(
         '--version', action='version', version=VERSION)
     parser.add_argument(
-        'paths', nargs='+', help='paths to research objects to be validated')
+        'path', nargs='+', help='path to research objects to be validated')
 
     return parser.parse_args()
 
 
 def main():
     args = parse_arguments()
-    for path in args.paths:
+    for path in args.path:
         try:
             validate(path)
-        except (ValidationError, JSONDecodeError) as err:
+        except Exception as err:
             print(
-                f'Error validating research object at \'{ro_path}\': {err}',
+                f"Error validating research object at '{path}': {err}",
                 file=sys.stderr,
             )
 

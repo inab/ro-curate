@@ -14,6 +14,7 @@
 
 import os
 import json
+from bdbag import bdbag_api as bdbag
 
 _MANIFEST_RELATIVE_PATHS = [
     '.ro/manifest.json',
@@ -68,10 +69,19 @@ def find_manifest(ro_path):
 def validate(ro_path):
     """
     Validates the research object at the path `ro_path`, throwing an
-    exception if an error is encountered or returning a list
-    of warnings if successful.
-    :param ro_path: path to the root directory of the research object
+    exception if an error is encountered.
+    :param ro_path: relative or absolute path to the root directory of the
+    research object
     """
+    # Validate BagIt RO bag
+    ro_path = os.path.abspath(ro_path)
+    bdbag.validate_bag(ro_path)
+    bdbag.validate_bag_structure(ro_path)
+    bagit_profile = bdbag.validate_bag_profile(ro_path)
+    bdbag.validate_bag_serialization(ro_path, bagit_profile.url)
+
+    # Extract bag to temp directory and process the RO as a directory
+    ro_path = bdbag.extract_bag(ro_path, temp=True)
     with find_manifest(ro_path) as manifest:
         manifest_data = json.load(manifest)
-        print(manifest_data)
+    print(manifest_data)
