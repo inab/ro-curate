@@ -18,5 +18,8 @@ setup(
     long_description=read_file('README.md'),
     entry_points={
         'console_scripts': ['rocurate=rocurate.cli:main'],
-    }
+    },
+    package_data={
+
+    },
 )
