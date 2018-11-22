@@ -98,7 +98,7 @@
         sh:maxCount 1
     ] .
 
-:AnnotationShap a sh:NodeShape ;
+:AnnotationShape a sh:NodeShape ;
     sh:targetClass oa:Annotation ;
     sh:property [
         sh:path [sh:alternativePaths (dct:creator pav:createdBy)] ;

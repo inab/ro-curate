@@ -1,5 +1,5 @@
-@base <../> .
-@prefix :       <> .
+@base <.> .
+@prefix :       <.> .
 @prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh:	    <http://www.w3.org/ns/shacl#> .
@@ -24,15 +24,13 @@
     sh:or (
         [
             sh:path dct:creator ;
-            sh:nodeKind sh:IRI ;
             sh:minCount 1
         ]
         [
             sh:path pav:createdBy ;
-            sh:nodeKind sh:IRI ;
             sh:minCount 1
         ]
-    );
+    ) ;
     sh:or (
         [
             sh:path dct:created ;
@@ -54,5 +52,64 @@
     ] ;
     sh:property [
         sh:path ro:rootFolder ;
-        sh:nodeKind sh:IRI ;
+        sh:nodeKind sh:IRI
     ] .
+
+:AggregationShape a sh:NodeShape ;
+    sh:targetClass ore:Aggregation ;
+    sh:property [
+        sh:path ore:aggregates ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1
+    ] .
+    # TODO: add `ore:describedBy` property for subjects that are aggregations
+    #       AND research objects
+
+:ManifestShape a sh:NodeShape ;
+    sh:targetClass ro:Manifest ;
+    sh:property [
+        sh:path ore:describes ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+        # TODO: ensure that inverse constraint matches up
+    ] .
+
+:ProxyShape a sh:NodeShape ;
+    sh:targetClass ro:Proxy, ore:Proxy ;
+    sh:property [
+        sh:path ore:proxyFor ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path ore:proxyIn ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:or (
+        [
+            sh:path dct:creator ;
+            sh:minCount 1
+        ]
+        [
+            sh:path pav:createdBy ;
+            sh:minCount 1
+        ]
+    ) ;
+    sh:or (
+        [
+            sh:path dct:created ;
+            sh:datatype xsd:dateTime ;
+            sh:minCount 1 ;
+            sh:maxCount 1
+        ]
+        [
+            sh:path pav:createdOn ;
+            sh:datatype xsd:dateTime ;
+            sh:minCount 1 ;
+            sh:maxCount 1
+        ]
+    ) .
