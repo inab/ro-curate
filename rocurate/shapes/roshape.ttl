@@ -160,6 +160,7 @@
     sh:targetClass ro:FolderEntry ;
     sh:property [
         sh:path ro:entryName ;
+        sh:datatype xsd:string ;
         sh:minCount 1 ;
         sh:maxCount 1
     ] .

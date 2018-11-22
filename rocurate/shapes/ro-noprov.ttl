@@ -20,52 +20,27 @@
 @prefix doi:    <http://dx.doi.org/> .
 
 <.> a ro:ResearchObject, ore:Aggregation ;
-    dct:creator [
-        a foaf:Person ;
-        foaf:name "Adam Cowdy"
-    ] ;
-    dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime ;
     ore:isDescribedBy <.ro/manifest.ttl> ;
     ore:aggregates <workflows> ,
         <workflows/workflow1.cwl> ,
         <.ro/annotations/ann1> .
 
 <.ro/manifest.ttl> a ro:Manifest ;
-    ore:describes <.> ;
-    dct:creator [
-        a foaf:Person ;
-        foaf:name "Adam Cowdy"
-    ] ;
-    dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
+    ore:describes <.> .
 
 <workflows> a ro:Folder ;
     ore:aggregates <workflows/workflow1.cwl> .
 
 :workflowsProxy a ore:Proxy ;
     ore:proxyFor <workflows> ;
-    ore:proxyIn <.> ;
-    dct:creator [
-        a foaf:Person ;
-        foaf:name "Adam Cowdy"
-    ] ;
-    dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
+    ore:proxyIn <.> .
 
 <workflows/workflow1.cwl> a ro:Resource .
 
 :workflow1proxy a ore:Proxy ;
     ore:proxyFor <workflows/workflow1.cwl> ;
-    ore:proxyIn <.> ;
-    dct:creator [
-        a foaf:Person ;
-        foaf:name "Adam Cowdy"
-    ] ;
-    dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
+    ore:proxyIn <.> .
 
 <.ro/annotations/ann1> a ro:Annotation ;
     oa:hasBody <.ro/ann1> ;
-    oa:hasTarget <workflows/workflow1.cwl> ;
-    dct:creator [
-        a foaf:Person ;
-        foaf:name "Adam Cowdy"
-    ] ;
-    dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
+    oa:hasTarget <workflows/workflow1.cwl> .

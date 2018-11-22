@@ -73,21 +73,6 @@
         sh:minCount 1 ;
         sh:maxCount 1
         # TODO: ensure that inverse constraint matches up
-    ] .
-
-:ProxyShape a sh:NodeShape ;
-    sh:targetClass ro:Proxy, ore:Proxy ;
-    sh:property [
-        sh:path ore:proxyFor ;
-        sh:nodeKind sh:IRI ;
-        sh:minCount 1 ;
-        sh:maxCount 1
-    ] ;
-    sh:property [
-        sh:path ore:proxyIn ;
-        sh:nodeKind sh:IRI ;
-        sh:minCount 1 ;
-        sh:maxCount 1
     ] ;
     sh:or (
         [
@@ -113,3 +98,101 @@
             sh:maxCount 1
         ]
     ) .
+
+:ProxyShape a sh:NodeShape ;
+    sh:targetClass ro:Proxy, ore:Proxy ;
+    sh:property [
+        sh:path ore:proxyFor ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] ;
+    sh:property [
+        sh:path ore:proxyIn ;
+        sh:nodeKind sh:IRI ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] .
+
+:AnnotationShape a sh:NodeShape ;
+    sh:targetClass oa:Annotation, ro:Annotation ;
+    sh:or (
+        [
+            sh:path ao:body ;
+            sh:nodeKind sh:IRI ;
+            sh:minCount 1 ;
+            sh:maxCount 1
+        ]
+        [
+            sh:path oa:hasBody ;
+            sh:nodeKind sh:IRI ;
+            sh:minCount 1 ;
+            sh:maxCount 1
+        ]
+    ) ;
+    sh:or (
+        [
+            sh:path ao:annotatesResource ;
+            sh:nodeKind sh:IRI ;
+            sh:minCount 1 ;
+            sh:maxCount 1
+        ]
+        [
+            sh:path ro:annotatesAggregatedResource ;
+            sh:nodeKind sh:IRI ;
+            sh:minCount 1 ;
+            sh:maxCount 1
+        ]
+        [
+            sh:path oa:hasTarget ;
+            sh:nodeKind sh:IRI ;
+            sh:minCount 1 ;
+            sh:maxCount 1
+        ]
+    ) ;
+    sh:or (
+        [
+            sh:path dct:creator ;
+            sh:minCount 1
+        ]
+        [
+            sh:path pav:createdBy ;
+            sh:minCount 1
+        ]
+    ) ;
+    sh:or (
+        [
+            sh:path dct:created ;
+            sh:datatype xsd:dateTime ;
+            sh:minCount 1 ;
+            sh:maxCount 1
+        ]
+        [
+            sh:path pav:createdOn ;
+            sh:datatype xsd:dateTime ;
+            sh:minCount 1 ;
+            sh:maxCount 1
+        ]
+    ) .
+
+:ResourceShape a sh:NodeShape ;
+    sh:targetClass ro:Resource .
+
+:AggregatedAnnotationShape a sh:NodeShape ;
+    sh:targetClass ro:AggregatedAnnotation .
+
+:FolderShape a sh:NodeShape ;
+    sh:targetClass ro:Folder ;
+    sh:property [
+        sh:path ore:isDescribedBy ;
+        sh:nodeKind sh:IRI ;
+        sh:maxCount 1
+    ] .
+
+:FolderEntryShape a sh:NodeShape ;
+    sh:targetClass ro:FolderEntry ;
+    sh:property [
+        sh:path ro:entryName ;
+        sh:minCount 1 ;
+        sh:maxCount 1
+    ] .
