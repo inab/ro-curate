@@ -16,7 +16,7 @@ import os
 import json
 from bdbag import bdbag_api as bdbag
 import rdflib
-import pyshacl
+from pyshacl import validate as shacl_validate
 from rocurate.shapes import PATH as shapes_path
 
 _MANIFEST_RELATIVE_PATHS = [
@@ -99,7 +99,10 @@ def validate(ro_path):
         shacl_data = f.read()
     shacl_graph.parse(data=shacl_data, format='turtle')
 
-    r = pyshacl.validate(manifest_graph, shacl_graph)
+    # Validate manifest against shacl graph
+    r = shacl_validate(manifest_graph, shacl_graph=shacl_graph,
+                       inference='rdfs', target_graph_format='json-ld',
+                       shacl_graph_format='turtle')
     conforms, results_graph, results_text = r
     if not conforms:
         print("Manifest is invalid: " + results_text)
