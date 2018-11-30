@@ -15,9 +15,14 @@
 import os
 import json
 from bdbag import bdbag_api as bdbag
+import rdflib
+import pyshacl
+from rocurate.shapes import PATH as shapes_path
 
 _MANIFEST_RELATIVE_PATHS = [
+    'data/.ro/manifest.json',
     '.ro/manifest.json',
+    'data/',
     '',
 ]
 
@@ -57,7 +62,7 @@ def find_manifest(ro_path):
     # Try each path in `manifest_paths` in order until a manifest is found
     for file_path in manifest_paths:
         try:
-            return open(file_path, 'r')
+            return file_path
         except (FileNotFoundError, IsADirectoryError, NotADirectoryError):
             continue
 
@@ -73,15 +78,28 @@ def validate(ro_path):
     :param ro_path: relative or absolute path to the root directory of the
     research object
     """
+    # Extract bag to temp directory and process the RO as a directory
+    ro_path = bdbag.extract_bag(ro_path, temp=True)
+
     # Validate BagIt RO bag
     ro_path = os.path.abspath(ro_path)
     bdbag.validate_bag(ro_path)
     bdbag.validate_bag_structure(ro_path)
-    bagit_profile = bdbag.validate_bag_profile(ro_path)
-    bdbag.validate_bag_serialization(ro_path, bagit_profile.url)
 
-    # Extract bag to temp directory and process the RO as a directory
-    ro_path = bdbag.extract_bag(ro_path, temp=True)
-    with find_manifest(ro_path) as manifest:
-        manifest_data = json.load(manifest)
-    print(manifest_data)
+    # Get graph of manifest data
+    manifest = find_manifest(ro_path)
+    manifest_graph = rdflib.Graph()
+    with open(manifest, 'r') as f:
+        manifest_data = f.read()
+    manifest_graph.parse(data=manifest_data, format='json-ld')
+
+    # Get graph of shacl shapes
+    shacl_graph = rdflib.Graph()
+    with open(shapes_path, 'r') as f:
+        shacl_data = f.read()
+    shacl_graph.parse(data=shacl_data, format='turtle')
+
+    r = pyshacl.validate(manifest_graph, shacl_graph)
+    conforms, results_graph, results_text = r
+    if not conforms:
+        print("Manifest is invalid: " + results_text)

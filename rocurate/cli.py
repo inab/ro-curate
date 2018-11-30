@@ -38,13 +38,7 @@ def parse_arguments():
 def main():
     args = parse_arguments()
     for path in args.path:
-        try:
-            validate(path)
-        except Exception as err:
-            print(
-                f"Error validating research object at '{path}': {err}",
-                file=sys.stderr,
-            )
+        validate(path)
 
 
 if __name__ == '__main__':

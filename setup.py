@@ -20,6 +20,6 @@ setup(
         'console_scripts': ['rocurate=rocurate.cli:main'],
     },
     package_data={
-
+        'rocurate.shapes': ['shapes.ttl']
     },
 )
