@@ -16,6 +16,8 @@ import os
 import json
 from bdbag import bdbag_api as bdbag
 import rdflib
+from rdflib import RDF
+from rdflib.namespace import DCTERMS
 from pyshacl import validate as shacl_validate
 from rocurate.shapes import PATH as shapes_path
 
@@ -106,3 +108,15 @@ def validate(ro_path):
     conforms, results_graph, results_text = r
     if not conforms:
         print("Manifest is invalid: " + results_text)
+
+    # Get optional graph in dct:conformsTo property of manifest graph
+    ro = rdflib.Namespace('http://purl.org/wf4ever/ro#')
+    for s, p, o in manifest_graph.triples((None, DCTERMS.conformsTo, None)):
+        if (s, RDF.type, ro.ResearchObject) in manifest_graph:
+            shacl_graph_2 = rdflib.Graph()
+            shacl_graph_2.load(o)
+            r = shacl_validate(manifest_graph, shacl_graph=shacl_graph_2,
+                           inference='rdfs', target_graph_format='json-ld')
+            conforms, results_graph, results_text = r
+            if not conforms:
+                print("Manifest is invalid: " + results_text)

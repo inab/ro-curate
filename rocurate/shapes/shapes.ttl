@@ -55,7 +55,11 @@
     sh:property [
         sh:path ro:rootFolder ;
         sh:nodeKind sh:IRI
-    ] .
+    ] ;
+    sh:property [
+        sh:path dct:conformsTo ;
+        sh:nodeKind sh:IRI ;
+    ].
 
 :AggregationShape a sh:NodeShape ;
     sh:targetClass ore:Aggregation ;
