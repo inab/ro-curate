@@ -6,3 +6,4 @@ and assert -- pyshacl -s shapes.ttl minimalro.ttl
 and assert -- pyshacl -s shapes.ttl ro.ttl
 and assert -- not pyshacl -s shapes.ttl ro-noprov.ttl
 and assert -- pyshacl -s shapes.ttl ro.json
+and assert -- not pyshacl -s shapes.ttl ro-mixedprov.ttl

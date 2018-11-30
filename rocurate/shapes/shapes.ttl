@@ -23,26 +23,28 @@
     sh:targetClass ro:ResearchObject ;
     sh:or (
         [
-            sh:path dct:creator ;
-            sh:minCount 1
+            sh:property [
+                sh:path dct:creator ;
+                sh:minCount 1
+            ] ;
+            sh:property [
+                sh:path dct:created ;
+                sh:datatype xsd:dateTime ;
+                sh:minCount 1 ;
+                sh:maxCount 1
+            ]
         ]
         [
-            sh:path pav:createdBy ;
-            sh:minCount 1
-        ]
-    ) ;
-    sh:or (
-        [
-            sh:path dct:created ;
-            sh:datatype xsd:dateTime ;
-            sh:minCount 1 ;
-            sh:maxCount 1
-        ]
-        [
-            sh:path pav:createdOn ;
-            sh:datatype xsd:dateTime ;
-            sh:minCount 1 ;
-            sh:maxCount 1
+            sh:property [
+                sh:path pav:createdBy ;
+                sh:minCount 1
+            ] ;
+            sh:property [
+                sh:path pav:createdOn ;
+                sh:datatype xsd:dateTime ;
+                sh:minCount 1 ;
+                sh:maxCount 1
+            ]
         ]
     ) ;
     sh:property [
@@ -76,26 +78,28 @@
     ] ;
     sh:or (
         [
-            sh:path dct:creator ;
-            sh:minCount 1
+            sh:property [
+                sh:path dct:creator ;
+                sh:minCount 1
+            ] ;
+            sh:property [
+                sh:path dct:created ;
+                sh:datatype xsd:dateTime ;
+                sh:minCount 1 ;
+                sh:maxCount 1
+            ]
         ]
         [
-            sh:path pav:createdBy ;
-            sh:minCount 1
-        ]
-    ) ;
-    sh:or (
-        [
-            sh:path dct:created ;
-            sh:datatype xsd:dateTime ;
-            sh:minCount 1 ;
-            sh:maxCount 1
-        ]
-        [
-            sh:path pav:createdOn ;
-            sh:datatype xsd:dateTime ;
-            sh:minCount 1 ;
-            sh:maxCount 1
+            sh:property [
+                sh:path pav:createdBy ;
+                sh:minCount 1
+            ] ;
+            sh:property [
+                sh:path pav:createdOn ;
+                sh:datatype xsd:dateTime ;
+                sh:minCount 1 ;
+                sh:maxCount 1
+            ]
         ]
     ) .
 
@@ -152,26 +156,28 @@
     ) ;
     sh:or (
         [
-            sh:path dct:creator ;
-            sh:minCount 1
+            sh:property [
+                sh:path dct:creator ;
+                sh:minCount 1
+            ] ;
+            sh:property [
+                sh:path dct:created ;
+                sh:datatype xsd:dateTime ;
+                sh:minCount 1 ;
+                sh:maxCount 1
+            ]
         ]
         [
-            sh:path pav:createdBy ;
-            sh:minCount 1
-        ]
-    ) ;
-    sh:or (
-        [
-            sh:path dct:created ;
-            sh:datatype xsd:dateTime ;
-            sh:minCount 1 ;
-            sh:maxCount 1
-        ]
-        [
-            sh:path pav:createdOn ;
-            sh:datatype xsd:dateTime ;
-            sh:minCount 1 ;
-            sh:maxCount 1
+            sh:property [
+                sh:path pav:createdBy ;
+                sh:minCount 1
+            ] ;
+            sh:property [
+                sh:path pav:createdOn ;
+                sh:datatype xsd:dateTime ;
+                sh:minCount 1 ;
+                sh:maxCount 1
+            ]
         ]
     ) .
 
