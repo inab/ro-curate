@@ -14,23 +14,22 @@
 
 import unittest
 from rocurate.validation import *
+from urllib.error import HTTPError
 from . import data_file
 
 
 class TestValidation(unittest.TestCase):
-    def test_find_manifest_for_empty_bundle(self):
-        with find_manifest(data_file('empty')) as manifest:
-            data = manifest.read()
-            assert data == ''
+    def test_validation_for_simple_correct_bundle_succeeds(self):
+        validate(data_file('build/simple.zip'))
 
-    def test_find_manifest_for_empty_json(self):
-        path = data_file('empty/.ro/manifest.json')
-        with find_manifest(path) as manifest:
-            data = manifest.read()
-            assert data == ''
+    def test_validation_for_empty_bundle_fails(self):
+        with self.assertRaises(ManifestNotFoundError):
+            validate(data_file('build/empty.zip'))
 
-    def test_validate_fails_for_empty_bundle(self):
-        with self.assertRaises(Exception):
-            validate(data_file('empty'))
+    def test_validation_for_missing_ro_prov_bundle_fails(self):
+        with self.assertRaises(ValidationError):
+            validate(data_file('build/ro-missing-prov.zip'))
 
-
+    def test_validation_for_missing_remote_resource_fails(self):
+        with self.assertRaises(HTTPError):
+            validate(data_file('build/missing-remote-profile.zip'))

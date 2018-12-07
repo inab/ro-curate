@@ -1,0 +1,128 @@
+{
+  "@context" : [ "https://w3id.org/bundle/context" ],
+  "@type" : "ro:ResearchObject",
+  "id" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl",
+  "manifest" : [ "manifest.json" ],
+  "createdBy" : {
+    "uri" : "https://view.commonwl.org",
+    "name" : "Common Workflow Language Viewer"
+  },
+  "retrievedFrom" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl?format=ro",
+  "retrievedOn" : "2018-07-02T23:31:51.151Z",
+  "retrievedBy" : {
+    "uri" : "https://view.commonwl.org",
+    "name" : "Common Workflow Language Viewer"
+  },
+  "history" : [ "http:/git2prov.org/git2prov?giturl=https:/github.com/BD2KGenomics/dockstore_workflow_cnv.git&serialization=PROV-JSON" ],
+  "aggregates" : [ {
+    "uri" : "/workflow/tar.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-07-02T23:31:51.435Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/tar.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:1f42d311-b57b-4913-896f-621409814769",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/cnv.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-07-02T23:31:51.447Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:9c41185b-d499-40b6-b7ad-38446211ac58",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/varscan_cnv.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-07-02T23:31:51.457Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:daff5f14-e687-4715-8f3f-d55edbde777d",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/adtex.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-07-02T23:31:51.47Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:b96a752c-8261-4f13-a0e1-2e082ee7adb2",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/README.md",
+    "mediatype" : "application/octet-stream",
+    "createdOn" : "2018-07-02T23:31:51.484Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/README.md?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "bundledAs" : {
+      "uri" : "urn:uuid:66d60e0b-0d59-4e1e-b574-372462bba2ed",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/zcat.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-07-02T23:31:51.485Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/zcat.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:f0f40550-befc-4bde-a9fe-71f6802c435c",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/visualisation.png",
+    "mediatype" : "image/png",
+    "createdOn" : "2018-07-02T23:31:51.59Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl?format=png",
+    "bundledAs" : {
+      "uri" : "urn:uuid:db71073f-749a-4e92-8d28-a6d8127b198f",
+      "folder" : "/"
+    }
+  }, {
+    "uri" : "/visualisation.svg",
+    "mediatype" : "image/svg+xml",
+    "createdOn" : "2018-07-02T23:31:51.61Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl?format=svg",
+    "bundledAs" : {
+      "uri" : "urn:uuid:e3c160d9-4037-41ee-8d22-195b7afc2a45",
+      "folder" : "/"
+    }
+  } ],
+  "annotations" : [ {
+    "uri" : "urn:uuid:64c1e3f4-2384-4102-a70c-f1c0104236df",
+    "about" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl",
+    "content" : "annotations/merged.cwl"
+  }, {
+    "uri" : "urn:uuid:103cf5c7-a798-4ad2-8f04-e37747683acc",
+    "about" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl",
+    "content" : "annotations/workflow.ttl"
+  } ]
+}

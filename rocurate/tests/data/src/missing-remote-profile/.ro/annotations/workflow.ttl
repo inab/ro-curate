@@ -1,0 +1,252 @@
+@prefix LinkMergeMethod: <https://w3id.org/cwl/cwl#LinkMergeMethod/> .
+@prefix SchemaDefRequirement: <https://w3id.org/cwl/cwl#SchemaDefRequirement/> .
+@prefix EnumSchema: <https://w3id.org/cwl/salad#EnumSchema/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix CommandOutputBinding: <https://w3id.org/cwl/cwl#CommandOutputBinding/> .
+@prefix ArraySchema: <https://w3id.org/cwl/salad#ArraySchema/> .
+@prefix EnvironmentDef: <https://w3id.org/cwl/cwl#EnvironmentDef/> .
+@prefix Dirent: <https://w3id.org/cwl/cwl#Dirent/> .
+@prefix RecordSchema: <https://w3id.org/cwl/salad#RecordSchema/> .
+@prefix CommandLineTool: <https://w3id.org/cwl/cwl#CommandLineTool/> .
+@prefix ExpressionTool: <https://w3id.org/cwl/cwl#ExpressionTool/> .
+@prefix Directory: <https://w3id.org/cwl/cwl#Directory/> .
+@prefix CommandLineBinding: <https://w3id.org/cwl/cwl#CommandLineBinding/> .
+@prefix EnvVarRequirement: <https://w3id.org/cwl/cwl#EnvVarRequirement/> .
+@prefix DockerRequirement: <https://w3id.org/cwl/cwl#DockerRequirement/> .
+@prefix Workflow: <https://w3id.org/cwl/cwl#Workflow/> .
+@prefix sld:   <https://w3id.org/cwl/salad#> .
+@prefix InlineJavascriptRequirement: <https://w3id.org/cwl/cwl#InlineJavascriptRequirement/> .
+@prefix SoftwarePackage: <https://w3id.org/cwl/cwl#SoftwarePackage/> .
+@prefix SoftwareRequirement: <https://w3id.org/cwl/cwl#SoftwareRequirement/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ScatterMethod: <https://w3id.org/cwl/cwl#ScatterMethod/> .
+@prefix Parameter: <https://w3id.org/cwl/cwl#Parameter/> .
+@prefix cwl:   <https://w3id.org/cwl/cwl#> .
+@prefix ResourceRequirement: <https://w3id.org/cwl/cwl#ResourceRequirement/> .
+@prefix File:  <https://w3id.org/cwl/cwl#File/> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl>
+        a                 cwl:CommandLineTool ;
+        rdfs:comment      "Docker container for an ADTEx workflow. See the [github repo](https://github.com/BD2KGenomics/dockstore_tool_adtex.git) for more information." ;
+        rdfs:label        "ADTEx workflow" ;
+        cwl:baseCommand   ( "-o" "./" "--tostdout" ) ;
+        cwl:cwlVersion    cwl:v1.0 ;
+        cwl:inputs        <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#targets> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#control_bam_input> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#sample_id> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#tumor_bam_input> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#centromeres> ;
+        cwl:outputs       <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#output> ;
+        cwl:requirements  [ a                             cwl:DockerRequirement ;
+                            DockerRequirement:dockerPull  "quay.io/ucsc_cgl/dockstore_tool_adtex:v1.0.0"
+                          ] ;
+        cwl:stdout        "adtex.cnv" .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#sample_id>
+        rdfs:comment      "sample ID to use in output" ;
+        cwl:default       "mypatient" ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-q" ] ;
+        sld:type          sld:null , xsd:string .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#ADTEX_OUTCNV>
+        cwl:outputSource  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/output> ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#control_bam_input>
+        rdfs:comment      "The control exome BAM file used as input, it must be sorted." ;
+        cwl:format        <http://edamontology.org/format_2572> ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-c" ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#zcat/unzippedFileName>
+        cwl:valueFrom  "$('genome.fa')" .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/zcat.cwl#gzipFile>
+        cwl:inputBinding  [ CommandLineBinding:position
+                          1 ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#NORMAL_BAM>
+        sld:type  cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex>
+        cwl:in   <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/sample_id> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/targets> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/centromeres> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/tumor_bam_input> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/control_bam_input> ;
+        cwl:out  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/output> ;
+        cwl:run  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/zcat.cwl>
+        a                cwl:CommandLineTool ;
+        cwl:baseCommand  ( "zcat" ) ;
+        cwl:cwlVersion   cwl:v1.0 ;
+        cwl:inputs       <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/zcat.cwl#gzipFile> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/zcat.cwl#unzippedFileName> ;
+        cwl:outputs      <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/zcat.cwl#unzippedFile> ;
+        cwl:stdout       "$(inputs.unzippedFileName)" .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/sample_id>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#SAMPLE_ID> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/zcat.cwl#unzippedFile>
+        cwl:outputBinding  [ CommandOutputBinding:glob
+                          "$(inputs.unzippedFileName)" ] ;
+        sld:type           cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl>
+        a                 cwl:Workflow ;
+        rdfs:comment      "Copynumber variation workflow, runs ADTEx and Varscan" ;
+        Workflow:steps    <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#zcat> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex> ;
+        cwl:cwlVersion    cwl:v1.0 ;
+        cwl:inputs        <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#NORMAL_BAM> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#TARGETS> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#GENO_FA_GZ> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#SAMPLE_ID> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#CENTROMERES> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#TUMOR_BAM> ;
+        cwl:outputs       <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#VARSCAN_OUTCNV> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#ADTEX_OUTCNV> ;
+        cwl:requirements  [ a  cwl:InlineJavascriptRequirement ] ;
+        cwl:requirements  [ a  cwl:MultipleInputFeatureRequirement ] ;
+        cwl:requirements  [ a  cwl:StepInputExpressionRequirement ] .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#sample_id>
+        rdfs:comment      "sample ID to use in output" ;
+        cwl:default       "myPatient" ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-s" ] ;
+        sld:type          sld:null , xsd:string .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl>
+        a                 cwl:CommandLineTool ;
+        rdfs:comment      "A Docker container for a Varscan2 workflow. See the [github repo](https://github.com/BD2KGenomics/dockstore_tool_varscan_cnv.git) for more information." ;
+        rdfs:label        "Varscan2 workflow" ;
+        cwl:baseCommand   ( "-s" "./" ) ;
+        cwl:cwlVersion    cwl:v1.0 ;
+        cwl:inputs        <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#targets> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#tumor_bam_input> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#centromeres> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#sample_id> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#genome> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#control_bam_input> ;
+        cwl:outputs       <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#output> ;
+        cwl:requirements  [ a                             cwl:DockerRequirement ;
+                            DockerRequirement:dockerPull  "quay.io/ucsc_cgl/dockstore_tool_varscan_cnv:v1.0.0"
+                          ] ;
+        cwl:stdout        "varscan.cnv" .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/genome>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#zcat/unzippedFile> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/sample_id>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#SAMPLE_ID> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#output>
+        cwl:outputBinding  [ CommandOutputBinding:glob
+                          "adtex.cnv" ] ;
+        sld:type           cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/tumor_bam_input>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#TUMOR_BAM> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/targets>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#TARGETS> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#control_bam_input>
+        rdfs:comment      "The control exome BAM file used as input, it must be sorted." ;
+        cwl:format        <http://edamontology.org/format_2572> ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-n" ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/targets>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#TARGETS> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#zcat>
+        cwl:in   <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#zcat/gzipFile> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#zcat/unzippedFileName> ;
+        cwl:out  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#zcat/unzippedFile> ;
+        cwl:run  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/zcat.cwl> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#centromeres>
+        rdfs:comment      "Centromere bed file" ;
+        cwl:format        <http://edamontology.org/format_3003> ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-c" ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#tumor_bam_input>
+        rdfs:comment      "The tumor exome BAM file used as input, it must be sorted." ;
+        cwl:format        <http://edamontology.org/format_2572> ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-t" ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#tumor_bam_input>
+        rdfs:comment      "The tumor exome BAM file used as input, it must be sorted." ;
+        cwl:format        <http://edamontology.org/format_2572> ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-t" ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/centromeres>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#CENTROMERES> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#output>
+        cwl:outputBinding  [ CommandOutputBinding:glob
+                          "varscan.cnv" ] ;
+        sld:type           cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#VARSCAN_OUTCNV>
+        cwl:outputSource  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/output> ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/adtex.cwl#targets>
+        rdfs:comment      "Exome Targets bed file" ;
+        cwl:format        <http://edamontology.org/format_3003> ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-b" ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#zcat/gzipFile>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#GENO_FA_GZ> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#genome>
+        rdfs:comment      "Genome fasta" ;
+        cwl:format        <http://edamontology.org/format_1929> ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-i" ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#TARGETS>
+        sld:type  cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan>
+        cwl:in   <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/centromeres> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/sample_id> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/targets> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/tumor_bam_input> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/genome> , <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/control_bam_input> ;
+        cwl:out  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/output> ;
+        cwl:run  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#centromeres>
+        rdfs:comment      "Centromere bed file" ;
+        cwl:format        <http://edamontology.org/format_3003> ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-b" ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/control_bam_input>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#NORMAL_BAM> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#GENO_FA_GZ>
+        sld:type  cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#TUMOR_BAM>
+        sld:type  cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/varscan_cnv.cwl#targets>
+        rdfs:comment      "Exome Targets bed file" ;
+        cwl:format        <http://edamontology.org/format_3003> ;
+        cwl:inputBinding  [ CommandLineBinding:prefix
+                          "-w" ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#varscan/control_bam_input>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#NORMAL_BAM> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#CENTROMERES>
+        sld:type  cwl:File .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/centromeres>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#CENTROMERES> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#adtex/tumor_bam_input>
+        cwl:source  <https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#TUMOR_BAM> .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl#SAMPLE_ID>
+        sld:type  xsd:string .
+
+<https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/zcat.cwl#unzippedFileName>
+        sld:type  xsd:string .

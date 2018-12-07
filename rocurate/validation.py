@@ -13,13 +13,12 @@
 #   limitations under the License.
 
 import os
-import json
 from bdbag import bdbag_api as bdbag
 import rdflib
 from rdflib import RDF
 from rdflib.namespace import DCTERMS
 from pyshacl import validate as shacl_validate
-from rocurate.shapes import PATH as shapes_path
+from rocurate.shapes import PATH as SHAPES_PATH
 
 _MANIFEST_RELATIVE_PATHS = [
     'data/.ro/manifest.json',
@@ -30,6 +29,12 @@ _MANIFEST_RELATIVE_PATHS = [
 
 
 class ValidationError(Exception):
+    def __init__(self, results_graph, msg):
+        super().__init__(msg)
+        self.results_graph = results_graph
+
+
+class ManifestNotFoundError(Exception):
     pass
 
 
@@ -53,7 +58,7 @@ def _ro_bundle_file(ro_path, file_path):
 def find_manifest(ro_path):
     """
     Finds the most likely manifest file in a research object.
-    If a suitable file is not found a `ValidationError` is thrown.
+    If a suitable file is not found a `ManifestNotFoundError` is thrown.
     :param ro_path: path to the root directory of the research object
     :return: `file` object for the most suitable manifest file
     """
@@ -63,60 +68,71 @@ def find_manifest(ro_path):
 
     # Try each path in `manifest_paths` in order until a manifest is found
     for file_path in manifest_paths:
-        try:
+        if os.path.isfile(file_path):
             return file_path
-        except (FileNotFoundError, IsADirectoryError, NotADirectoryError):
-            continue
 
     # If no manifest is found, raise exception
-    raise ValidationError(
-        f'Manifest not found in path(s): {manifest_paths}')
+    raise ManifestNotFoundError()
+
+
+def _rdf_graph_from_file(path, fmt='json-ld'):
+    """
+    Throws FileNotFoundError, IsADirectoryError.
+    :param path:
+    :param fmt:
+    :return:
+    """
+    g = rdflib.Graph()
+    with open(path, 'r') as f:
+        data = f.read()
+    g.parse(data=data, format=fmt)
+    return g
+
+
+def _rdf_graph_from_remote(path):
+    """
+    Throws urllib.error.HTTPError.
+    :param path:
+    :return:
+    """
+    g = rdflib.Graph()
+    g.load(path)
+    return g
+
+
+def _validate_rdf(rdf_graph, shacl_graph):
+    conforms, graph, text = shacl_validate(rdf_graph, shacl_graph=shacl_graph)
+    if not conforms:
+        raise ValidationError(graph, text)
 
 
 def validate(ro_path):
     """
     Validates the research object at the path `ro_path`, throwing an
     exception if an error is encountered.
+    Throws urllib.error.HTTPError, ValidationError, ManifestNotFoundError,
+    json.decoder.JSONDecodeError.
     :param ro_path: relative or absolute path to the root directory of the
     research object
     """
     # Extract bag to temp directory and process the RO as a directory
     ro_path = bdbag.extract_bag(ro_path, temp=True)
+    ro_path = os.path.abspath(ro_path)
 
     # Validate BagIt RO bag
-    ro_path = os.path.abspath(ro_path)
     bdbag.validate_bag(ro_path)
     bdbag.validate_bag_structure(ro_path)
 
-    # Get graph of manifest data
-    manifest = find_manifest(ro_path)
-    manifest_graph = rdflib.Graph()
-    with open(manifest, 'r') as f:
-        manifest_data = f.read()
-    manifest_graph.parse(data=manifest_data, format='json-ld')
-
-    # Get graph of shacl shapes
-    shacl_graph = rdflib.Graph()
-    with open(shapes_path, 'r') as f:
-        shacl_data = f.read()
-    shacl_graph.parse(data=shacl_data, format='turtle')
+    # Get graphs for manifest and main profile
+    manifest_graph = _rdf_graph_from_file(find_manifest(ro_path))
+    shacl_graph = _rdf_graph_from_file(SHAPES_PATH, fmt='turtle')
 
     # Validate manifest against shacl graph
-    r = shacl_validate(manifest_graph, shacl_graph=shacl_graph,
-                       inference='rdfs', target_graph_format='json-ld',
-                       shacl_graph_format='turtle')
-    conforms, results_graph, results_text = r
-    if not conforms:
-        print("Manifest is invalid: " + results_text)
+    _validate_rdf(manifest_graph, shacl_graph)
 
     # Get optional graph in dct:conformsTo property of manifest graph
     ro = rdflib.Namespace('http://purl.org/wf4ever/ro#')
     for s, p, o in manifest_graph.triples((None, DCTERMS.conformsTo, None)):
         if (s, RDF.type, ro.ResearchObject) in manifest_graph:
-            shacl_graph_2 = rdflib.Graph()
-            shacl_graph_2.load(o)
-            r = shacl_validate(manifest_graph, shacl_graph=shacl_graph_2,
-                           inference='rdfs', target_graph_format='json-ld')
-            conforms, results_graph, results_text = r
-            if not conforms:
-                print("Manifest is invalid: " + results_text)
+            shacl_graph_2 = _rdf_graph_from_remote(o)
+            _validate_rdf(manifest_graph, shacl_graph_2)
