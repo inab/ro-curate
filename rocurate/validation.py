@@ -13,6 +13,8 @@
 #   limitations under the License.
 
 import os
+from urllib.error import HTTPError
+
 from bdbag import bdbag_api as bdbag
 import rdflib
 from rdflib import RDF
@@ -29,13 +31,30 @@ _MANIFEST_RELATIVE_PATHS = [
 
 
 class ValidationError(Exception):
-    def __init__(self, results_graph, msg):
-        super().__init__(msg)
+    def __init__(self, results_graph, results_text, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         self.results_graph = results_graph
+        self.results_text = results_text
+
+    def __str__(self):
+        return self.results_text
 
 
-class ManifestNotFoundError(Exception):
-    pass
+class ResourceNotFoundError(Exception):
+    def __init__(self, path, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.path = path
+
+    def __str__(self):
+        return f'resource not found at {self.path}'
+
+
+class ManifestNotFoundError(ResourceNotFoundError):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def __str__(self):
+        return f'manifest file not found'
 
 
 def _ro_bundle_file_path(ro_path, file_path):
@@ -77,14 +96,18 @@ def find_manifest(ro_path):
 
 def _rdf_graph_from_file(path, fmt='json-ld'):
     """
-    Throws FileNotFoundError, IsADirectoryError.
+    Throws ResourceNotFoundError.
     :param path:
     :param fmt:
     :return:
     """
     g = rdflib.Graph()
-    with open(path, 'r') as f:
-        data = f.read()
+    try:
+        with open(path, 'r') as f:
+            data = f.read()
+    except (FileNotFoundError, IsADirectoryError):
+        raise ResourceNotFoundError(path)
+
     g.parse(data=data, format=fmt)
     return g
 
@@ -96,7 +119,10 @@ def _rdf_graph_from_remote(path):
     :return:
     """
     g = rdflib.Graph()
-    g.load(path)
+    try:
+        g.load(path)
+    except HTTPError:
+        raise ResourceNotFoundError(path)
     return g
 
 
