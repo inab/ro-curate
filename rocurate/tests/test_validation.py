@@ -31,5 +31,5 @@ class TestValidation(unittest.TestCase):
             validate(data_file('build/ro-missing-prov.zip'))
 
     def test_validation_for_missing_remote_resource_fails(self):
-        with self.assertRaises(HTTPError):
+        with self.assertRaises(ResourceNotFoundError):
             validate(data_file('build/missing-remote-profile.zip'))

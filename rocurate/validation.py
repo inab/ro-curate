@@ -30,6 +30,7 @@ _MANIFEST_RELATIVE_PATHS = [
 ]
 
 
+# TODO: make ValidationError a base class for all validation errors
 class ValidationError(Exception):
     def __init__(self, results_graph, results_text, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -49,7 +50,8 @@ class ResourceNotFoundError(Exception):
         return f'resource not found at {self.path}'
 
 
-class ManifestNotFoundError(ResourceNotFoundError):
+# TODO: remove this?
+class ManifestNotFoundError(Exception):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -121,8 +123,9 @@ def _rdf_graph_from_remote(path):
     g = rdflib.Graph()
     try:
         g.load(path)
-    except HTTPError:
-        raise ResourceNotFoundError(path)
+    except HTTPError as err:
+        if err.code == 404:
+            raise ResourceNotFoundError(path)
     return g
 
 
@@ -132,6 +135,7 @@ def _validate_rdf(rdf_graph, shacl_graph):
         raise ValidationError(graph, text)
 
 
+# TODO: make this function return an iterable of validation errors
 def validate(ro_path):
     """
     Validates the research object at the path `ro_path`, throwing an
