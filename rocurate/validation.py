@@ -14,7 +14,6 @@
 
 import os
 from urllib.error import HTTPError
-
 from bdbag import bdbag_api as bdbag
 import rdflib
 from rdflib import RDF

@@ -14,7 +14,6 @@
 
 import unittest
 from rocurate.validation import *
-from urllib.error import HTTPError
 from . import data_file
 
 

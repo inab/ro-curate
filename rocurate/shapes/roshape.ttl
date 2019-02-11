@@ -43,6 +43,7 @@
         sh:nodeKind sh:IRI ;
         sh:maxCount 1
     ] .
+    # sh:minCount 1 .
 
 :AggregationShape a sh:NodeShape ;
     sh:targetClass ore:Aggregation ;
