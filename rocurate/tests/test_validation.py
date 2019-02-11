@@ -22,18 +22,42 @@ from rocurate.validation import (
 from . import data_file
 
 
+def iterator_empty(i):
+    """Returns True if the given iterator is empty, else False.
+
+    Note that this function consumes one element of the given iterator,
+    provided it is non-empty.
+    """
+    try:
+        next(i)
+        return True
+    except StopIteration:
+        return False
+
+
+def instance_in(klass, items):
+    """Returns True if there is an instance of a specific class in items.
+
+    Items are considered instances of a class if
+    isinstance(class, item) == True.
+
+    Returns False if the iterable of items is empty.
+    """
+    return any(isinstance(x, klass) for x in items)
+
+
 class TestValidation(unittest.TestCase):
     def test_validation_for_simple_correct_bundle_succeeds(self):
-        validate(data_file('build/simple.zip'))
+        assert iterator_empty(validate(data_file('build/simple.zip')))
 
     def test_validation_for_empty_bundle_fails(self):
-        with self.assertRaises(ManifestNotFoundError):
-            validate(data_file('build/empty.zip'))
+        errors = validate(data_file('build/empty.zip'))
+        assert instance_in(ManifestNotFoundError, errors)
 
     def test_validation_for_missing_ro_prov_bundle_fails(self):
-        with self.assertRaises(ValidationError):
-            validate(data_file('build/ro-missing-prov.zip'))
+        errors = validate(data_file('build/ro-missing-prov.zip'))
+        assert instance_in(ValidationError, errors)
 
     def test_validation_for_missing_remote_resource_fails(self):
-        with self.assertRaises(ResourceNotFoundError):
-            validate(data_file('build/missing-remote-profile.zip'))
+        errors = validate(data_file('build/missing-remote-profile.zip'))
+        assert instance_in(ResourceNotFoundError, errors)
