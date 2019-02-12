@@ -40,7 +40,7 @@ class ValidationError(Exception):
         return self.results_text
 
 
-class ResourceNotFoundError(Exception):
+class ResourceNotFoundError(ValidationError):
     def __init__(self, path, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.path = path
@@ -49,8 +49,7 @@ class ResourceNotFoundError(Exception):
         return f'resource not found at {self.path}'
 
 
-# TODO: remove this?
-class ManifestNotFoundError(Exception):
+class ManifestNotFoundError(ValidationError):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
@@ -125,6 +124,8 @@ def _rdf_graph_from_remote(path):
     except HTTPError as err:
         if err.code == 404:
             raise ResourceNotFoundError(path)
+        else:
+            raise err
     return g
 
 
@@ -132,6 +133,10 @@ def _validate_rdf(rdf_graph, shacl_graph):
     conforms, graph, text = shacl_validate(rdf_graph, shacl_graph=shacl_graph)
     if not conforms:
         raise ValidationError(graph, text)
+
+
+def validate_graph(graph):
+    ...
 
 
 # TODO: make this function return an iterable of validation errors
