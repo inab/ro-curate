@@ -13,9 +13,31 @@
 #   limitations under the License.
 
 import os
+import rdflib
+from rocurate.validation import validate_graph
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), 'data')
 
 
 def data_file(file):
     return os.path.join(DATA_DIR, file)
+
+
+def robundle(name):
+    return data_file(f'build/{name}.zip')
+
+
+def rordf(name):
+    return data_file(f'rdf/{name}.ttl')
+
+
+def graph_validates(name):
+    g = rdflib.Graph()
+    with open(name, 'r') as f:
+        data = f.read()
+    g.parse(data=data, format='turtle')
+    try:
+        next(validate_graph(g))
+        return False
+    except StopIteration:
+        return True
