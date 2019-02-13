@@ -13,11 +13,6 @@
 #   limitations under the License.
 
 import unittest
-from rocurate.shapes import PATH
-from rocurate.validation import (
-        validate_graph,
-        ValidationError,
-    )
 from . import graph_validates
 
 
@@ -38,3 +33,7 @@ class TestResearchObjectShape(unittest.TestCase):
         assert not graph_validates('simple-createdOn-0')
         assert graph_validates('simple-createdOn-1')
         assert not graph_validates('simple-createdOn-5')
+
+        assert graph_validates('simple-isDescribedBy-0')
+        assert graph_validates('simple-isDescribedBy-1')
+        assert not graph_validates('simple-isDescribedBy-5')
