@@ -33,7 +33,7 @@ def rordf(name):
 
 def graph_validates(name):
     g = rdflib.Graph()
-    with open(name, 'r') as f:
+    with open(rordf(name), 'r') as f:
         data = f.read()
     g.parse(data=data, format='turtle')
     try:
