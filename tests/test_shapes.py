@@ -13,7 +13,19 @@
 #   limitations under the License.
 
 import unittest
-from . import graph_validates
+import rdflib
+from rocurate import validate_graph
+import data
+
+
+def graph_validates(name):
+    g = rdflib.Graph()
+    g.parse(data.rdf(name), format='turtle')
+    try:
+        next(validate_graph(g))
+        return False
+    except StopIteration:
+        return True
 
 
 class TestResearchObjectShape(unittest.TestCase):
