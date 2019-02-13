@@ -20,6 +20,11 @@ from rdflib import RDF
 from rdflib.namespace import DCTERMS
 from pyshacl import validate as shacl_validate
 from rocurate.shapes import PATH as SHAPES_PATH
+from rocurate.errors import (
+        ValidationError,
+        MissingResourceError,
+        MissingManifestError,
+    )
 
 _MANIFEST_RELATIVE_PATHS = [
     'data/.ro/manifest.json',
@@ -27,34 +32,6 @@ _MANIFEST_RELATIVE_PATHS = [
     'data/',
     '',
 ]
-
-
-# TODO: make ValidationError a base class for all validation errors
-class ValidationError(Exception):
-    def __init__(self, results_graph, results_text, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.results_graph = results_graph
-        self.results_text = results_text
-
-    def __str__(self):
-        return self.results_text
-
-
-class ResourceNotFoundError(ValidationError):
-    def __init__(self, path, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.path = path
-
-    def __str__(self):
-        return f'resource not found at {self.path}'
-
-
-class ManifestNotFoundError(ValidationError):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-
-    def __str__(self):
-        return f'manifest file not found'
 
 
 def _ro_bundle_file_path(ro_path, file_path):
@@ -77,7 +54,7 @@ def _ro_bundle_file(ro_path, file_path):
 def find_manifest(ro_path):
     """
     Finds the most likely manifest file in a research object.
-    If a suitable file is not found a `ManifestNotFoundError` is thrown.
+    If a suitable file is not found a `MissingManifestError` is thrown.
     :param ro_path: path to the root directory of the research object
     :return: `file` object for the most suitable manifest file
     """
@@ -91,12 +68,12 @@ def find_manifest(ro_path):
             return file_path
 
     # If no manifest is found, raise exception
-    raise ManifestNotFoundError()
+    raise MissingManifestError()
 
 
 def _rdf_graph_from_file(path, fmt='json-ld'):
     """
-    Throws ResourceNotFoundError.
+    Throws MissingResourceError.
     :param path:
     :param fmt:
     :return:
@@ -106,7 +83,7 @@ def _rdf_graph_from_file(path, fmt='json-ld'):
         with open(path, 'r') as f:
             data = f.read()
     except (FileNotFoundError, IsADirectoryError):
-        raise ResourceNotFoundError(path)
+        raise MissingResourceError(path)
 
     g.parse(data=data, format=fmt)
     return g
@@ -123,7 +100,7 @@ def _rdf_graph_from_remote(path):
         g.load(path)
     except HTTPError as err:
         if err.code == 404:
-            raise ResourceNotFoundError(path)
+            raise MissingResourceError(path)
         else:
             raise err
     return g
@@ -144,7 +121,7 @@ def validate(ro_path):
     """
     Validates the research object at the path `ro_path`, throwing an
     exception if an error is encountered.
-    Throws urllib.error.HTTPError, ValidationError, ManifestNotFoundError,
+    Throws urllib.error.HTTPError, ValidationError, MissingManifestError,
     json.decoder.JSONDecodeError.
     :param ro_path: relative or absolute path to the root directory of the
     research object
