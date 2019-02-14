@@ -14,25 +14,24 @@
 
 """Contains exceptions returned/thrown by the rocurate API.
 
-Classes:
-    - ValidationError
-    - MissingManifestError
-    - MissingResourceError
-
+This module should not be imported directly. Instead import `rocurate`.
 """
 
 
 class ValidationError(Exception):
-    def __init__(self, results_graph, results_text, *args, **kwargs):
+    pass
+
+
+class ConstraintViolationError(ValidationError):
+    def __init__(self, msg, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.results_graph = results_graph
-        self.results_text = results_text
+        self.msg = msg
 
     def __str__(self):
-        return self.results_text
+        return self.msg
 
 
-class ResourceNotFoundError(ValidationError):
+class MissingResourceError(ValidationError):
     def __init__(self, path, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.path = path
@@ -41,7 +40,7 @@ class ResourceNotFoundError(ValidationError):
         return f'resource not found at {self.path}'
 
 
-class ManifestNotFoundError(ValidationError):
+class MissingManifestError(ValidationError):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 

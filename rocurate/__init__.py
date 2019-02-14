@@ -12,5 +12,20 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
+"""API for validating Research Objects bundled as BagIt archives.
+
+Usual usage of this API involves calling `validate` with the path to a
+Research Object bundle as a parameter, then iterating over the errors
+returned.
+
+"""
+
+from .errors import (
+        ValidationError,
+        ConstraintViolationError,
+        MissingResourceError,
+        MissingManifestError,
+    )
+from .graph import validate_graph
 
 VERSION = "0.1.0"

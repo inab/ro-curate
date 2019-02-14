@@ -15,12 +15,13 @@
 import unittest
 import rdflib
 from rocurate import validate_graph
-import data
+from . import data
 
 
 def graph_validates(name):
     g = rdflib.Graph()
-    g.parse(data.rdf(name), format='turtle')
+    with open(data.rdf(name), 'r') as f:
+        g.parse(data=f.read(), format='turtle')
     try:
         next(validate_graph(g))
         return False
