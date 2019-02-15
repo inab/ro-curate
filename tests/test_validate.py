@@ -21,15 +21,15 @@ from rocurate import (
 import data
 
 
-class TestValidation(unittest.TestCase):
-    def test_validation_for_simple_correct_bundle_succeeds(self):
+class TestValidate(unittest.TestCase):
+    def test_validate_for_simple_correct_bundle_succeeds(self):
         with self.assertRaises(StopIteration):
             next(validate(data.bundle('simple')))
 
-    def test_validation_for_empty_bundle_fails(self):
+    def test_validate_for_empty_bundle_fails(self):
         errors = validate(data.bundle('empty'))
         assert isinstance(next(errors), ManifestNotFoundError)
 
-    def test_validation_for_missing_remote_resource_fails(self):
+    def test_validate_for_missing_remote_resource_fails(self):
         errors = validate(data.bundle('missing-remote-profile'))
         assert isinstance(next(errors), ResourceNotFoundError)
