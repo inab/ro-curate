@@ -13,18 +13,14 @@
 #   limitations under the License.
 
 import unittest
-import rdflib
 from rocurate import validate_graph
 from . import data
 
 
 def graph_validates(name):
     """Return True if a graph validates without error, else False."""
-    g = rdflib.Graph()
-    with open(data.rdf(name), 'r') as f:
-        g.parse(data=f.read(), format='turtle')
     try:
-        next(validate_graph(g))
+        next(validate_graph(data.graph(name)))
         return False
     except StopIteration:
         return True

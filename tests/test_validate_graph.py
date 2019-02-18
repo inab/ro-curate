@@ -12,26 +12,14 @@
 #   See the License for the specific language governing permissions and
 #   limitations under the License.
 
-import os
-import rdflib
-
-DATA_DIR = os.path.dirname(__file__)
-
-
-def _data_file(file):
-    return os.path.join(DATA_DIR, file)
+import unittest
+from rocurate import validate_graph
+from . import data
 
 
-def bundle(name):
-    return _data_file(f'build/{name}.zip')
-
-
-def rdf(name):
-    return _data_file(f'rdf/{name}.ttl')
-
-
-def graph(name):
-    g = rdflib.Graph()
-    with open(rdf(name), 'r') as f:
-        g.parse(data=f.read(), format='turtle')
-    return g
+class TestValidateGraph(unittest.TestCase):
+    def test_yields_error_with_message_for_ro_with_no_created_date(self):
+        g = data.graph('simple-ResearchObject-created-0')
+        errors = validate_graph(g)
+        violation = next(errors)
+        assert violation.message == 'Missing creation date'

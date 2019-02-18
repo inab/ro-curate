@@ -18,7 +18,7 @@ from rocurate import (
         ManifestNotFoundError,
         ResourceNotFoundError,
     )
-import data
+from . import data
 
 
 class TestValidate(unittest.TestCase):
