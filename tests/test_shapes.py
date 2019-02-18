@@ -19,6 +19,7 @@ from . import data
 
 
 def graph_validates(name):
+    """Return True if a graph validates without error, else False."""
     g = rdflib.Graph()
     with open(data.rdf(name), 'r') as f:
         g.parse(data=f.read(), format='turtle')
@@ -31,22 +32,112 @@ def graph_validates(name):
 
 class TestResearchObjectShape(unittest.TestCase):
     def test_cardinalities(self):
-        assert not graph_validates('simple-creator-0')
-        assert graph_validates('simple-creator-1')
-        assert graph_validates('simple-creator-5')
+        assert not graph_validates('simple-ResearchObject-creator-0')
+        assert graph_validates('simple-ResearchObject-creator-1')
+        assert graph_validates('simple-ResearchObject-creator-5')
 
-        assert not graph_validates('simple-created-0')
-        assert graph_validates('simple-created-1')
-        assert not graph_validates('simple-created-5')
+        assert not graph_validates('simple-ResearchObject-created-0')
+        assert graph_validates('simple-ResearchObject-created-1')
+        assert not graph_validates('simple-ResearchObject-created-5')
 
-        assert not graph_validates('simple-createdBy-0')
-        assert graph_validates('simple-createdBy-1')
-        assert graph_validates('simple-createdBy-5')
+        assert not graph_validates('simple-ResearchObject-createdBy-0')
+        assert graph_validates('simple-ResearchObject-createdBy-1')
+        assert graph_validates('simple-ResearchObject-createdBy-5')
 
-        assert not graph_validates('simple-createdOn-0')
-        assert graph_validates('simple-createdOn-1')
-        assert not graph_validates('simple-createdOn-5')
+        assert not graph_validates('simple-ResearchObject-createdOn-0')
+        assert graph_validates('simple-ResearchObject-createdOn-1')
+        assert not graph_validates('simple-ResearchObject-createdOn-5')
 
-        assert graph_validates('simple-isDescribedBy-0')
-        assert graph_validates('simple-isDescribedBy-1')
-        assert not graph_validates('simple-isDescribedBy-5')
+        assert graph_validates('simple-ResearchObject-isDescribedBy-0')
+        assert graph_validates('simple-ResearchObject-isDescribedBy-1')
+        assert not graph_validates('simple-ResearchObject-isDescribedBy-5')
+
+
+class TestAggregationShape(unittest.TestCase):
+    def test_cardinalities(self):
+        assert not graph_validates('simple-Aggregation-aggregates-0')
+        assert graph_validates('simple-Aggregation-aggregates-1')
+        assert graph_validates('simple-Aggregation-aggregates-3')
+
+
+class TestManifestShape(unittest.TestCase):
+    def test_cardinalities(self):
+        assert not graph_validates('simple-Manifest-creator-0')
+        assert graph_validates('simple-Manifest-creator-1')
+        assert graph_validates('simple-Manifest-creator-5')
+
+        assert not graph_validates('simple-Manifest-created-0')
+        assert graph_validates('simple-Manifest-created-1')
+        assert not graph_validates('simple-Manifest-created-5')
+
+        assert not graph_validates('simple-Manifest-createdBy-0')
+        assert graph_validates('simple-Manifest-createdBy-1')
+        assert graph_validates('simple-Manifest-createdBy-5')
+
+        assert not graph_validates('simple-Manifest-createdOn-0')
+        assert graph_validates('simple-Manifest-createdOn-1')
+        assert not graph_validates('simple-Manifest-createdOn-5')
+
+        assert not graph_validates('simple-Manifest-describes-0')
+        assert graph_validates('simple-Manifest-describes-1')
+        assert not graph_validates('simple-Manifest-describes-5')
+
+
+class TestProxyShape(unittest.TestCase):
+    def test_cardinalities(self):
+        assert not graph_validates('simple-Proxy-proxyFor-0')
+        assert graph_validates('simple-Proxy-proxyFor-1')
+        assert not graph_validates('simple-Proxy-proxyFor-5')
+
+        assert not graph_validates('simple-Proxy-proxyIn-0')
+        assert graph_validates('simple-Proxy-proxyIn-1')
+        assert not graph_validates('simple-Proxy-proxyIn-5')
+
+
+class TestAnnotationShape(unittest.TestCase):
+    def test_cardinalities(self):
+        assert not graph_validates('simple-Annotation-hasBody-0')
+        assert graph_validates('simple-Annotation-hasBody-1')
+        assert not graph_validates('simple-Annotation-hasBody-5')
+
+        assert not graph_validates('simple-Annotation-body-0')
+        assert graph_validates('simple-Annotation-body-1')
+        assert not graph_validates('simple-Annotation-body-5')
+
+        assert not graph_validates('simple-Annotation-annotatesResource-0')
+        assert graph_validates('simple-Annotation-annotatesResource-1')
+        assert not graph_validates('simple-Annotation-annotatesResource-5')
+
+        assert not graph_validates(
+                'simple-Annotation-annotatesAggregatedResource-0')
+        assert graph_validates(
+                'simple-Annotation-annotatesAggregatedResource-1')
+        assert not graph_validates(
+                'simple-Annotation-annotatesAggregatedResource-5')
+
+        assert not graph_validates('simple-Annotation-hasTarget-0')
+        assert graph_validates('simple-Annotation-hasTarget-1')
+        assert not graph_validates('simple-Annotation-hasTarget-5')
+
+        assert not graph_validates('simple-Annotation-creator-0')
+        assert graph_validates('simple-Annotation-creator-1')
+        assert graph_validates('simple-Annotation-creator-5')
+
+        assert not graph_validates('simple-Annotation-created-0')
+        assert graph_validates('simple-Annotation-created-1')
+        assert not graph_validates('simple-Annotation-created-5')
+
+        assert not graph_validates('simple-Annotation-createdBy-0')
+        assert graph_validates('simple-Annotation-createdBy-1')
+        assert graph_validates('simple-Annotation-createdBy-5')
+
+        assert not graph_validates('simple-Annotation-createdOn-0')
+        assert graph_validates('simple-Annotation-createdOn-1')
+        assert not graph_validates('simple-Annotation-createdOn-5')
+
+
+# class TestFolderEntryShape(unittest.TestCase):
+#     def test_cardinalities(self):
+#         assert not graph_validates('simple-FolderEntry-entryName-0')
+#         assert graph_validates('simple-FolderEntry-entryName-1')
+#         assert not graph_validates('simple-FolderEntry-entryName-5')

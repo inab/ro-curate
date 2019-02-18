@@ -1,0 +1,70 @@
+@base <../> .
+@prefix :       <.> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:	    <http://www.w3.org/ns/shacl#> .
+@prefix xsd:	<http://www.w3.org/2001/XMLSchema#> .
+@prefix pav:    <http://purl.org/pav/> .
+@prefix ao:     <http://purl.org/ao/> .
+@prefix oa:     <http://www.w3.org/ns/oa#> .
+@prefix dc:     <http://purl.org/dc/elements/1.1/> .
+@prefix dct:    <http://purl.org/dc/terms/> .
+@prefix ore:    <http://www.openarchives.org/ore/terms/> .
+@prefix ro:     <http://purl.org/wf4ever/ro#> .
+@prefix roterms: <http://purl.org/wf4ever/roterms#> .
+@prefix bundle: <http://purl.org/wf4ever/bundle#> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+@prefix pav:    <http://purl.org/pav/> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix owl:    <http://www.w3.org/2002/07/owl#> .
+@prefix doi:    <http://dx.doi.org/> .
+
+<.> a ro:ResearchObject, ore:Aggregation ;
+    dct:creator [
+        a foaf:Person ;
+        foaf:name "Adam Cowdy"
+    ] ;
+    dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime ;
+    ore:isDescribedBy <.ro/manifest.ttl> ;
+    ore:aggregates <workflows> ,
+        <workflows/workflow1.cwl> ,
+        <.ro/annotations/ann1> .
+
+<.ro/manifest.ttl> a ro:Manifest ;
+    ore:describes <.> ;
+    dct:creator [
+        a foaf:Person ;
+        foaf:name "Adam Cowdy"
+    ] ;
+    dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
+
+<workflows> a ro:Folder ;
+    ore:aggregates <workflows/workflow1.cwl> .
+
+:workflowsProxy a ore:Proxy ;
+    ore:proxyFor <workflows> ;
+    ore:proxyIn <.> ;
+    dct:creator [
+        a foaf:Person ;
+        foaf:name "Adam Cowdy"
+    ] ;
+    dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
+
+<workflows/workflow1.cwl> a ro:Resource .
+
+:workflow1proxy a ore:Proxy ;
+    ore:proxyFor <workflows/workflow1.cwl> ;
+    ore:proxyIn <.> ;
+    dct:creator [
+        a foaf:Person ;
+        foaf:name "Adam Cowdy"
+    ] ;
+    dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
+
+<.ro/annotations/ann1> a ro:Annotation ;
+    oa:hasTarget <workflows/workflow1.cwl> ;
+    dct:creator [
+        a foaf:Person ;
+        foaf:name "Adam Cowdy"
+    ] ;
+    dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
