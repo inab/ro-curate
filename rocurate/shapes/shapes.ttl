@@ -19,34 +19,27 @@
 @prefix owl:    <http://www.w3.org/2002/07/owl#> .
 @prefix doi:    <http://dx.doi.org/> .
 
+:CreatorShape a sh:NodeShape ;
+    sh:property [
+        sh:path [ sh:alternativePath ( dct:creator pav:createdBy ) ] ;
+        sh:minCount 1 ;
+        sh:message "Missing creators"
+    ] .
+
+:CreatedShape a sh:NodeShape ;
+    sh:property [
+        sh:path [ sh:alternativePath ( dct:created pav:createdOn ) ];
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:message "Missing creation date"
+    ] .
+
+:ProvShape a sh:NodeShape ;
+    sh:node :CreatorShape, :CreatedShape .
+
 :ResearchObjectShape a sh:NodeShape ;
     sh:targetClass ro:ResearchObject ;
-    sh:or (
-        [
-            sh:property [
-                sh:path dct:creator ;
-                sh:minCount 1
-            ] ;
-            sh:property [
-                sh:path dct:created ;
-                sh:datatype xsd:dateTime ;
-                sh:minCount 1 ;
-                sh:maxCount 1
-            ]
-        ]
-        [
-            sh:property [
-                sh:path pav:createdBy ;
-                sh:minCount 1
-            ] ;
-            sh:property [
-                sh:path pav:createdOn ;
-                sh:datatype xsd:dateTime ;
-                sh:minCount 1 ;
-                sh:maxCount 1
-            ]
-        ]
-    ) ;
+    sh:node :ProvShape ;
     sh:property [
         sh:path ore:isDescribedBy ;
         sh:nodeKind sh:IRI ;
@@ -59,7 +52,7 @@
     sh:property [
         sh:path dct:conformsTo ;
         sh:nodeKind sh:IRI ;
-    ].
+    ] .
 
 :AggregationShape a sh:NodeShape ;
     sh:targetClass ore:Aggregation ;
@@ -80,32 +73,7 @@
         sh:maxCount 1
         # TODO: ensure that inverse constraint matches up
     ] ;
-    sh:or (
-        [
-            sh:property [
-                sh:path dct:creator ;
-                sh:minCount 1
-            ] ;
-            sh:property [
-                sh:path dct:created ;
-                sh:datatype xsd:dateTime ;
-                sh:minCount 1 ;
-                sh:maxCount 1
-            ]
-        ]
-        [
-            sh:property [
-                sh:path pav:createdBy ;
-                sh:minCount 1
-            ] ;
-            sh:property [
-                sh:path pav:createdOn ;
-                sh:datatype xsd:dateTime ;
-                sh:minCount 1 ;
-                sh:maxCount 1
-            ]
-        ]
-    ) .
+    sh:node :ProvShape .
 
 :ProxyShape a sh:NodeShape ;
     sh:targetClass ro:Proxy, ore:Proxy ;
@@ -158,32 +126,7 @@
             sh:maxCount 1
         ]
     ) ;
-    sh:or (
-        [
-            sh:property [
-                sh:path dct:creator ;
-                sh:minCount 1
-            ] ;
-            sh:property [
-                sh:path dct:created ;
-                sh:datatype xsd:dateTime ;
-                sh:minCount 1 ;
-                sh:maxCount 1
-            ]
-        ]
-        [
-            sh:property [
-                sh:path pav:createdBy ;
-                sh:minCount 1
-            ] ;
-            sh:property [
-                sh:path pav:createdOn ;
-                sh:datatype xsd:dateTime ;
-                sh:minCount 1 ;
-                sh:maxCount 1
-            ]
-        ]
-    ) .
+    sh:node :ProvShape .
 
 :ResourceShape a sh:NodeShape ;
     sh:targetClass ro:Resource .
