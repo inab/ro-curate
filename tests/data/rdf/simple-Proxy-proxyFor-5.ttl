@@ -42,11 +42,11 @@
     ore:aggregates <workflows/workflow1.cwl> .
 
 :workflowsProxy a ore:Proxy ;
-    ore:proxyFor <workflows> ;
-    ore:proxyFor <workflows> ;
-    ore:proxyFor <workflows> ;
-    ore:proxyFor <workflows> ;
-    ore:proxyFor <workflows> ;
+    ore:proxyFor <workflows1> ;
+    ore:proxyFor <workflows2> ;
+    ore:proxyFor <workflows3> ;
+    ore:proxyFor <workflows4> ;
+    ore:proxyFor <workflows5> ;
     ore:proxyIn <.> ;
     dct:creator [
         a foaf:Person ;

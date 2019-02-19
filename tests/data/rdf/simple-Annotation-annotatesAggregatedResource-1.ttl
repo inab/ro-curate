@@ -63,7 +63,7 @@
 
 <.ro/annotations/ann1> a ro:Annotation ;
     oa:hasBody <.ro/ann1> ;
-    oa:annotatesAggregatedResource <workflows/workflow1.cwl> ;
+    ro:annotatesAggregatedResource <workflows/workflow1.cwl> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"

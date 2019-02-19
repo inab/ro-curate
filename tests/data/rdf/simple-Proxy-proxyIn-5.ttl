@@ -44,10 +44,10 @@
 :workflowsProxy a ore:Proxy ;
     ore:proxyFor <workflows> ;
     ore:proxyIn <.> ;
-    ore:proxyIn <.> ;
-    ore:proxyIn <.> ;
-    ore:proxyIn <.> ;
-    ore:proxyIn <.> ;
+    ore:proxyIn <ro1> ;
+    ore:proxyIn <ro2> ;
+    ore:proxyIn <ro3> ;
+    ore:proxyIn <ro4> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"

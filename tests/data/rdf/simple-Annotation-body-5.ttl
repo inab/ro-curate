@@ -63,10 +63,10 @@
 
 <.ro/annotations/ann1> a ro:Annotation ;
     ao:body <.ro/ann1> ;
-    ao:body <.ro/ann1> ;
-    ao:body <.ro/ann1> ;
-    ao:body <.ro/ann1> ;
-    ao:body <.ro/ann1> ;
+    ao:body <.ro/ann2> ;
+    ao:body <.ro/ann3> ;
+    ao:body <.ro/ann4> ;
+    ao:body <.ro/ann5> ;
     ao:annotatesResource <workflows/workflow1.cwl> ;
     dct:creator [
         a foaf:Person ;

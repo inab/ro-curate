@@ -32,10 +32,10 @@
 
 <.ro/manifest.ttl> a ro:Manifest ;
     ore:describes <.> ;
-    ore:describes <.> ;
-    ore:describes <.> ;
-    ore:describes <.> ;
-    ore:describes <.> ;
+    ore:describes <ro1> ;
+    ore:describes <ro2> ;
+    ore:describes <ro3> ;
+    ore:describes <ro4> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"

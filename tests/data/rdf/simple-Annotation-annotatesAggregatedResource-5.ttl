@@ -64,10 +64,10 @@
 <.ro/annotations/ann1> a ro:Annotation ;
     oa:hasBody <.ro/ann1> ;
     oa:annotatesAggregatedResource <workflows/workflow1.cwl> ;
-    oa:annotatesAggregatedResource <workflows/workflow1.cwl> ;
-    oa:annotatesAggregatedResource <workflows/workflow1.cwl> ;
-    oa:annotatesAggregatedResource <workflows/workflow1.cwl> ;
-    oa:annotatesAggregatedResource <workflows/workflow1.cwl> ;
+    oa:annotatesAggregatedResource <workflows/workflow2.cwl> ;
+    oa:annotatesAggregatedResource <workflows/workflow3.cwl> ;
+    oa:annotatesAggregatedResource <workflows/workflow4.cwl> ;
+    oa:annotatesAggregatedResource <workflows/workflow5.cwl> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"

@@ -64,10 +64,10 @@
 <.ro/annotations/ann1> a ro:Annotation ;
     ao:body <.ro/ann1> ;
     ao:annotatesResource <workflows/workflow1.cwl> ;
-    ao:annotatesResource <workflows/workflow1.cwl> ;
-    ao:annotatesResource <workflows/workflow1.cwl> ;
-    ao:annotatesResource <workflows/workflow1.cwl> ;
-    ao:annotatesResource <workflows/workflow1.cwl> ;
+    ao:annotatesResource <workflows/workflow2.cwl> ;
+    ao:annotatesResource <workflows/workflow3.cwl> ;
+    ao:annotatesResource <workflows/workflow4.cwl> ;
+    ao:annotatesResource <workflows/workflow5.cwl> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"

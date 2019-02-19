@@ -64,10 +64,10 @@
 <.ro/annotations/ann1> a ro:Annotation ;
     oa:hasBody <.ro/ann1> ;
     oa:hasTarget <workflows/workflow1.cwl> ;
-    oa:hasTarget <workflows/workflow1.cwl> ;
-    oa:hasTarget <workflows/workflow1.cwl> ;
-    oa:hasTarget <workflows/workflow1.cwl> ;
-    oa:hasTarget <workflows/workflow1.cwl> ;
+    oa:hasTarget <workflows/workflow2.cwl> ;
+    oa:hasTarget <workflows/workflow3.cwl> ;
+    oa:hasTarget <workflows/workflow4.cwl> ;
+    oa:hasTarget <workflows/workflow5.cwl> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"
