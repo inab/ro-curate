@@ -63,5 +63,9 @@ def validate_graph(graph):
 
     if not conforms:
         sh = rdflib.Namespace('http://www.w3.org/ns/shacl#')
-        for s, p, o in results:  # results.objects(predicate=sh.resultMessage):
-            yield ConstraintViolationError(str(s, p, o))
+        for result in results.subjects(rdflib.RDF.type, sh.ValidationResult):
+            focus = results.value(result, sh.focusNode)
+            path = results.value(result, sh.resultPath)
+            value = results.value(result, sh.value)
+            message = str(results.value(result, sh.resultMessage))
+            yield ConstraintViolationError(focus, path, value, message)

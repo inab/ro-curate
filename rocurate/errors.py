@@ -23,12 +23,15 @@ class ValidationError(Exception):
 
 
 class ConstraintViolationError(ValidationError):
-    def __init__(self, msg, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.msg = msg
+    def __init__(self, focus=None, path=None, value=None, message=''):
+        super().__init__()
+        self.focus = focus
+        self.path = path
+        self.value = value
+        self.message = message
 
     def __str__(self):
-        return self.msg
+        return self.message
 
 
 class MissingResourceError(ValidationError):

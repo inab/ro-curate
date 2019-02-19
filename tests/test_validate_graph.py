@@ -22,4 +22,4 @@ class TestValidateGraph(unittest.TestCase):
         g = data.graph('simple-ResearchObject-created-0')
         errors = validate_graph(g)
         violation = next(errors)
-        assert violation.message == 'Missing creation date'
+        self.assertEqual(violation.message, 'Missing creation date')
