@@ -15,8 +15,8 @@
 import unittest
 from rocurate import (
         validate,
-        ManifestNotFoundError,
-        ResourceNotFoundError,
+        MissingManifestError,
+        MissingResourceError,
     )
 from . import data
 
@@ -28,8 +28,8 @@ class TestValidate(unittest.TestCase):
 
     def test_validate_for_empty_bundle_fails(self):
         errors = validate(data.bundle('empty'))
-        assert isinstance(next(errors), ManifestNotFoundError)
+        assert isinstance(next(errors), MissingManifestError)
 
     def test_validate_for_missing_remote_resource_fails(self):
         errors = validate(data.bundle('missing-remote-profile'))
-        assert isinstance(next(errors), ResourceNotFoundError)
+        assert isinstance(next(errors), MissingResourceError)

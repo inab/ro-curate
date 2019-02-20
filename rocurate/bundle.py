@@ -18,8 +18,8 @@ from bdbag import bdbag_api as bdbag
 import rdflib
 from rdflib import RDF
 from rdflib.namespace import DCTERMS
-from pyshacl import validate as shacl_validate
 from rocurate.shapes import PATH as SHAPES_PATH
+from rocurate.graph import validate_graph
 from rocurate.errors import (
         ValidationError,
         MissingResourceError,
@@ -71,52 +71,6 @@ def find_manifest(ro_path):
     raise MissingManifestError()
 
 
-def _rdf_graph_from_file(path, fmt='json-ld'):
-    """
-    Throws MissingResourceError.
-    :param path:
-    :param fmt:
-    :return:
-    """
-    g = rdflib.Graph()
-    try:
-        with open(path, 'r') as f:
-            data = f.read()
-    except (FileNotFoundError, IsADirectoryError):
-        raise MissingResourceError(path)
-
-    g.parse(data=data, format=fmt)
-    return g
-
-
-def _rdf_graph_from_remote(path):
-    """
-    Throws urllib.error.HTTPError.
-    :param path:
-    :return:
-    """
-    g = rdflib.Graph()
-    try:
-        g.load(path)
-    except HTTPError as err:
-        if err.code == 404:
-            raise MissingResourceError(path)
-        else:
-            raise err
-    return g
-
-
-def _validate_rdf(rdf_graph, shacl_graph):
-    conforms, graph, text = shacl_validate(rdf_graph, shacl_graph=shacl_graph)
-    if not conforms:
-        raise ValidationError(graph, text)
-
-
-def validate_graph(graph):
-    ...
-
-
-# TODO: make this function return an iterable of validation errors
 def validate(ro_path):
     """
     Validates the research object at the path `ro_path`, throwing an
@@ -135,15 +89,18 @@ def validate(ro_path):
     bdbag.validate_bag_structure(ro_path)
 
     # Get graphs for manifest and main profile
-    manifest_graph = _rdf_graph_from_file(find_manifest(ro_path))
-    shacl_graph = _rdf_graph_from_file(SHAPES_PATH, fmt='turtle')
+    manifest_graph = rdflib.Graph()
+    try:
+        manifest_path = find_manifest(ro_path)
+    except MissingManifestError as err:
+        yield err
+        return
+    with open(manifest_path, 'r') as f:
+        manifest_graph.parse(data=f.read(), format='json-ld')
 
     # Validate manifest against shacl graph
-    _validate_rdf(manifest_graph, shacl_graph)
+    for err in validate_graph(manifest_graph):
+        yield err
 
-    # Get optional graph in dct:conformsTo property of manifest graph
-    ro = rdflib.Namespace('http://purl.org/wf4ever/ro#')
-    for s, p, o in manifest_graph.triples((None, DCTERMS.conformsTo, None)):
-        if (s, RDF.type, ro.ResearchObject) in manifest_graph:
-            shacl_graph_2 = _rdf_graph_from_remote(o)
-            _validate_rdf(manifest_graph, shacl_graph_2)
+    # TODO: Get optional graph in dct:conformsTo property of manifest graph
+    pass

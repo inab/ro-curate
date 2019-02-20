@@ -27,5 +27,6 @@ from .errors import (
         MissingManifestError,
     )
 from .graph import validate_graph
+from .bundle import validate
 
-VERSION = "0.1.0"
+VERSION = "0.1.1"

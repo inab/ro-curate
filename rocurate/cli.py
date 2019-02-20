@@ -15,7 +15,7 @@
 import sys
 import argparse
 from rocurate import VERSION
-from rocurate import validation as api
+import rocurate as api
 
 
 def parse_arguments():
@@ -37,12 +37,8 @@ def parse_arguments():
 def main():
     args = parse_arguments()
     for path in args.path:
-        try:
-            api.validate(path)
-        except (api.ManifestNotFoundError, api.ResourceNotFoundError) as e:
-            print(f'Error: {e}', file=sys.stderr)
-        except api.ValidationError as e:
-            print(e, file=sys.stderr)
+        for err in api.validate(path):
+            print(f'Error: {err}', file=sys.stderr)
 
 
 if __name__ == '__main__':
