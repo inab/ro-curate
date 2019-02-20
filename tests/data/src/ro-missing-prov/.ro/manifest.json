@@ -1,7 +1,7 @@
 {
   "@context" : [ "https://w3id.org/bundle/context" ],
   "@type" : "ro:ResearchObject",
-  "id" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl",
+  "@id" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl",
   "manifest" : [ "manifest.json" ],
   "retrievedFrom" : "https://w3id.org/cwl/view/git/20dfecaf29773c4b97fc8214537843f1494c6603/cnv.cwl?format=ro",
   "retrievedOn" : "2018-07-02T23:31:51.151Z",

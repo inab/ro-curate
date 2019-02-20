@@ -15,6 +15,7 @@
 """Contains exceptions returned/thrown by the rocurate API.
 
 This module should not be imported directly. Instead import `rocurate`.
+
 """
 
 
@@ -31,7 +32,7 @@ class ConstraintViolationError(ValidationError):
         self.message = message
 
     def __str__(self):
-        return self.message
+        return f'Constraint violation in node {self.focus}: {self.message}'
 
 
 class MissingResourceError(ValidationError):
