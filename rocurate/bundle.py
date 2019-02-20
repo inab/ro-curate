@@ -27,9 +27,9 @@ from rocurate.errors import (
     )
 
 _MANIFEST_RELATIVE_PATHS = [
+    'metadata/manifest.json',
     'data/.ro/manifest.json',
     '.ro/manifest.json',
-    'data/',
     '',
 ]
 
@@ -59,8 +59,8 @@ def find_manifest(ro_path):
     :return: `file` object for the most suitable manifest file
     """
     # Create a list of suitable absolute paths to tests for a manifest
-    manifest_paths = list(map(
-        lambda p: _ro_bundle_file_path(ro_path, p), _MANIFEST_RELATIVE_PATHS))
+    manifest_paths = map(lambda p: _ro_bundle_file_path(ro_path, p),
+                         _MANIFEST_RELATIVE_PATHS)
 
     # Try each path in `manifest_paths` in order until a manifest is found
     for file_path in manifest_paths:
