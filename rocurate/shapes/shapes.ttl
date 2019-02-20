@@ -19,21 +19,26 @@
 @prefix owl:    <http://www.w3.org/2002/07/owl#> .
 @prefix doi:    <http://dx.doi.org/> .
 
-:CreatorsShape a sh:NodeShape ;
-    sh:property [
-        sh:path [ sh:alternativePath ( dct:creator pav:createdBy ) ] ;
-        sh:minCount 1 ;
-    ] .
+:CreatorRequired a sh:PropertyShape ;
+    sh:path [ sh:alternativePath ( dct:creator pav:createdBy ) ] ;
+    sh:minCount 1 ;
+    sh:message "Missing creator" .
 
-:CreatedShape a sh:NodeShape ;
-    sh:property [
-        sh:path [ sh:alternativePath ( dct:created pav:createdOn ) ];
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-    ] .
+:CreatedRequired a sh:PropertyShape ;
+    sh:path [ sh:alternativePath ( dct:created pav:createdOn ) ] ;
+    sh:minCount 1 ;
+    sh:message "Missing creation date" .
+
+:CreatedOnlyOne a sh:PropertyShape ;
+    sh:path [ sh:alternativePath ( dct:created pav:createdOn ) ] ;
+    sh:maxCount 1 ;
+    sh:message "More than one creation date" .
 
 :ResearchObjectShape a sh:NodeShape ;
     sh:targetClass ro:ResearchObject ;
+    sh:property :CreatorRequired ;
+    sh:property :CreatedRequired ;
+    sh:property :CreatedOnlyOne ;
     sh:property [
         sh:path ore:isDescribedBy ;
         sh:nodeKind sh:IRI ;
@@ -47,16 +52,6 @@
         sh:path dct:conformsTo ;
         sh:nodeKind sh:IRI ;
     ] .
-
-:ResearchObjectCreatorsShape a sh:NodeShape ;
-    sh:targetClass ro:ResearchObject ;
-    sh:node :CreatorsShape ;
-    sh:message "Missing creators" .
-
-:ResearchObjectCreatedShape a sh:NodeShape ;
-    sh:targetClass ro:ResearchObject ;
-    sh:node :CreatedShape ;
-    sh:message "Missing creation date" .
 
 :AggregationShape a sh:NodeShape ;
     sh:targetClass ore:Aggregation ;
@@ -77,8 +72,9 @@
         sh:maxCount 1
         # TODO: ensure that inverse constraint matches up
     ] ;
-    sh:node :CreatorsShape ;
-    sh:node :CreatedShape .
+    sh:property :CreatorRequired ;
+    sh:property :CreatedRequired ;
+    sh:property :CreatedOnlyOne .
 
 :ProxyShape a sh:NodeShape ;
     sh:targetClass ro:Proxy, ore:Proxy ;
@@ -131,8 +127,9 @@
             sh:maxCount 1
         ]
     ) ;
-    sh:node :CreatorsShape ;
-    sh:node :CreatedShape .
+    sh:property :CreatorRequired ;
+    sh:property :CreatedRequired ;
+    sh:property :CreatedOnlyOne .
 
 :ResourceShape a sh:NodeShape ;
     sh:targetClass ro:Resource .
