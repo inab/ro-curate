@@ -19,38 +19,47 @@
 @prefix owl:    <http://www.w3.org/2002/07/owl#> .
 @prefix doi:    <http://dx.doi.org/> .
 
-:CreatorRequired a sh:PropertyShape ;
+:CreatorMinCount1 a sh:PropertyShape ;
     sh:path [ sh:alternativePath ( dct:creator pav:createdBy ) ] ;
     sh:minCount 1 ;
     sh:message "Missing creator" .
 
-:CreatedRequired a sh:PropertyShape ;
+:CreatedMinCount1 a sh:PropertyShape ;
     sh:path [ sh:alternativePath ( dct:created pav:createdOn ) ] ;
     sh:minCount 1 ;
     sh:message "Missing creation date" .
 
-:CreatedOnlyOne a sh:PropertyShape ;
+:CreatedMaxCount1 a sh:PropertyShape ;
     sh:path [ sh:alternativePath ( dct:created pav:createdOn ) ] ;
     sh:maxCount 1 ;
     sh:message "More than one creation date" .
 
+:IsDescribedByKindIRI a sh:PropertyShape ;
+    sh:path ore:isDescribedBy ;
+    sh:nodeKind sh:IRI ;
+    sh:message "Value of 'isDescribedBy' is not an IRI" .
+
+:IsDescribedByMaxCount1 a sh:PropertyShape ;
+    sh:path ore:isDescribedBy ;
+    sh:maxCount 1 ;
+    sh:message "More than one value for predicate 'isDescribedBy'" .
+
 :ResearchObjectShape a sh:NodeShape ;
     sh:targetClass ro:ResearchObject ;
-    sh:property :CreatorRequired ;
-    sh:property :CreatedRequired ;
-    sh:property :CreatedOnlyOne ;
-    sh:property [
-        sh:path ore:isDescribedBy ;
-        sh:nodeKind sh:IRI ;
-        sh:maxCount 1
-    ] ;
+    sh:property :CreatorMinCount1 ;
+    sh:property :CreatedMinCount1 ;
+    sh:property :CreatedMaxCount1 ;
+    sh:property :IsDescribedByKindIRI ;
+    sh:property :IsDescribedByMaxCount1 ;
     sh:property [
         sh:path ro:rootFolder ;
-        sh:nodeKind sh:IRI
+        sh:nodeKind sh:IRI ;
+        sh:message "Value of 'rootFolder' is not an IRI"
     ] ;
     sh:property [
         sh:path dct:conformsTo ;
         sh:nodeKind sh:IRI ;
+        sh:message "Value of 'conformsTo' is not an IRI"
     ] .
 
 :AggregationShape a sh:NodeShape ;
@@ -58,10 +67,14 @@
     sh:property [
         sh:path ore:aggregates ;
         sh:nodeKind sh:IRI ;
-        sh:minCount 1
+        sh:minCount 1 ;
+        sh:message "Value of 'aggregates' is not an IRI"
+    ] ;
+    sh:property [
+        sh:path ore:aggregates ;
+        sh:minCount 1 ;
+        sh:message "Missing aggregated resources"
     ] .
-    # TODO: add `ore:describedBy` property for subjects that are aggregations
-    #       AND research objects
 
 :ManifestShape a sh:NodeShape ;
     sh:targetClass ro:Manifest ;
@@ -69,67 +82,99 @@
         sh:path ore:describes ;
         sh:nodeKind sh:IRI ;
         sh:minCount 1 ;
-        sh:maxCount 1
-        # TODO: ensure that inverse constraint matches up
+        sh:maxCount 1 ;
+        sh:message "Missing 'describes' value"
     ] ;
-    sh:property :CreatorRequired ;
-    sh:property :CreatedRequired ;
-    sh:property :CreatedOnlyOne .
+    sh:property [
+        sh:path ore:describes ;
+        sh:nodeKind sh:IRI ;
+        sh:maxCount 1 ;
+        sh:message "More than one 'describes' value"
+    ] ;
+    sh:property :CreatorMinCount1 ;
+    sh:property :CreatedMinCount1 ;
+    sh:property :CreatedMaxCount1 .
 
 :ProxyShape a sh:NodeShape ;
     sh:targetClass ro:Proxy, ore:Proxy ;
     sh:property [
         sh:path ore:proxyFor ;
         sh:nodeKind sh:IRI ;
+        sh:message "Value of 'proxyFor' is not an IRI"
+    ] ;
+    sh:property [
+        sh:path ore:proxyFor ;
         sh:minCount 1 ;
-        sh:maxCount 1
+        sh:message "Missing 'proxyFor' value"
+    ] ;
+    sh:property [
+        sh:path ore:proxyFor ;
+        sh:maxCount 1 ;
+        sh:message "More than one 'proxyFor' value"
     ] ;
     sh:property [
         sh:path ore:proxyIn ;
         sh:nodeKind sh:IRI ;
+        sh:message "Value of 'proxyIn' is not an IRI"
+    ] ;
+    sh:property [
+        sh:path ore:proxyIn ;
         sh:minCount 1 ;
-        sh:maxCount 1
+        sh:message "Missing 'proxyIn' value"
+    ] ;
+    sh:property [
+        sh:path ore:proxyIn ;
+        sh:maxCount 1 ;
+        sh:message "More than one 'proxyIn' value"
     ] .
 
 :AnnotationShape a sh:NodeShape ;
     sh:targetClass oa:Annotation, ro:Annotation ;
-    sh:or (
-        [
-            sh:path ao:body ;
-            sh:nodeKind sh:IRI ;
-            sh:minCount 1 ;
-            sh:maxCount 1
-        ]
-        [
-            sh:path oa:hasBody ;
-            sh:nodeKind sh:IRI ;
-            sh:minCount 1 ;
-            sh:maxCount 1
-        ]
-    ) ;
-    sh:or (
-        [
-            sh:path ao:annotatesResource ;
-            sh:nodeKind sh:IRI ;
-            sh:minCount 1 ;
-            sh:maxCount 1
-        ]
-        [
-            sh:path ro:annotatesAggregatedResource ;
-            sh:nodeKind sh:IRI ;
-            sh:minCount 1 ;
-            sh:maxCount 1
-        ]
-        [
-            sh:path oa:hasTarget ;
-            sh:nodeKind sh:IRI ;
-            sh:minCount 1 ;
-            sh:maxCount 1
-        ]
-    ) ;
-    sh:property :CreatorRequired ;
-    sh:property :CreatedRequired ;
-    sh:property :CreatedOnlyOne .
+    sh:property [
+        sh:path [ sh:alternativePath ( ao:body oa:hasBody ) ] ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Body value is not an IRI"
+    ] ;
+    sh:property [
+        sh:path [ sh:alternativePath ( ao:body oa:hasBody ) ] ;
+        sh:minCount 1 ;
+        sh:message "Missing body"
+    ] ;
+    sh:property [
+        sh:path [ sh:alternativePath ( ao:body oa:hasBody ) ] ;
+        sh:maxCount 1 ;
+        sh:message "More than one body"
+    ] ;
+    sh:property [
+        sh:path [ sh:alternativePath (
+            ao:annotatesResource
+            oa:hasTarget
+            ro:annotatesAggregatedResource
+        ) ] ;
+        sh:nodeKind sh:IRI ;
+        sh:message "Annotation target value is not an IRI"
+    ] ;
+    sh:property [
+        sh:path [ sh:alternativePath (
+            ao:annotatesResource
+            oa:hasTarget
+            ro:annotatesAggregatedResource
+        ) ] ;
+        sh:minCount 1 ;
+        sh:message "Missing annotation target"
+    ] ;
+    sh:property [
+        sh:path [ sh:alternativePath (
+            ao:annotatesResource
+            oa:hasTarget
+            ro:annotatesAggregatedResource
+        ) ] ;
+        sh:maxCount 1 ;
+        sh:message "More than one annotation target"
+    ] ;
+    sh:property :CreatorMinCount1 ;
+    sh:property :CreatedMinCount1 ;
+    sh:property :CreatedMaxCount1 .
 
 :ResourceShape a sh:NodeShape ;
     sh:targetClass ro:Resource .
@@ -139,16 +184,17 @@
 
 :FolderShape a sh:NodeShape ;
     sh:targetClass ro:Folder ;
-    sh:property [
-        sh:path ore:isDescribedBy ;
-        sh:nodeKind sh:IRI ;
-        sh:maxCount 1
-    ] .
+    sh:property :IsDescribedByKindIRI .
 
 :FolderEntryShape a sh:NodeShape ;
     sh:targetClass ro:FolderEntry ;
     sh:property [
         sh:path ro:entryName ;
         sh:minCount 1 ;
-        sh:maxCount 1
+        sh:message "Missing entry name"
+    ] ;
+    sh:property [
+        sh:path ro:entryName ;
+        sh:maxCount 1 ;
+        sh:message "More than one entry name"
     ] .
