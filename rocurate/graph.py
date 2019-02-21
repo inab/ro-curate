@@ -24,19 +24,16 @@ from rocurate.errors import ConstraintViolationError
 from rocurate import shapes
 
 
-_shacl_graph = None
-
-
 def get_shacl_graph():
-    """Lazily load the SHACL graph for the universal shape"""
-    global _shacl_graph
-    if _shacl_graph is None:
-        _shacl_graph = rdflib.Graph()
-        with open(shapes.PATH, 'r') as f:
-            _shacl_graph.parse(data=f.read(), format="turtle")
-        return _shacl_graph
-    else:
-        return _shacl_graph
+    shacl_graph = rdflib.Graph()
+    with open(shapes.PATH, 'r') as f:
+        shacl_graph.parse(data=f.read(), format="turtle")
+    return shacl_graph
+
+
+def _add_profile_to_shacl(graph, shacl_graph):
+    for triple in graph:
+        shacl_graph.add(triple)
 
 
 def validate_graph(graph):
@@ -57,9 +54,11 @@ def validate_graph(graph):
     ValidationError
         Each issue is yielded as a value of a subclass of ValidationError.
     """
+    shacl_graph = get_shacl_graph()
+    _add_profile_to_shacl(graph, shacl_graph)
 
     conforms, results, _ = \
-        pyshacl.validate(graph, shacl_graph=get_shacl_graph())
+        pyshacl.validate(graph, shacl_graph=shacl_graph)
 
     if not conforms:
         sh = rdflib.Namespace('http://www.w3.org/ns/shacl#')
@@ -69,3 +68,5 @@ def validate_graph(graph):
             value = results.value(result, sh.value)
             message = str(results.value(result, sh.resultMessage))
             yield ConstraintViolationError(focus, path, value, message)
+
+    shacl_graph.close()

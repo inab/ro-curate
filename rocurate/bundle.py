@@ -28,6 +28,7 @@ from rocurate.errors import (
     )
 
 _MANIFEST_RELATIVE_PATHS = [
+    'metadata/manifest.ttl',
     'metadata/manifest.json',
     'data/.ro/manifest.json',
     '.ro/manifest.json',
@@ -86,27 +87,27 @@ def validate(ro_path):
     ro_path = os.path.abspath(ro_path)
 
     # Validate BagIt RO bag
-    try:
-        bdbag_api.validate_bag(ro_path)
-        bdbag_api.validate_bag_structure(ro_path)
-    except BagValidationError as err:
-        yield err
+    # try:
+    #     bdbag_api.validate_bag(ro_path)
+    #     bdbag_api.validate_bag_structure(ro_path)
+    # except BagValidationError as err:
+    #     yield err
 
     # Get graphs for manifest and main profile
-    manifest_graph = rdflib.Graph()
     try:
         manifest_path = find_manifest(ro_path)
     except MissingManifestError as err:
         yield err
         return
 
+    manifest_graph = rdflib.Graph()
     manifest_fmt = 'turtle' if manifest_path.endswith('.ttl') else 'json-ld'
     with open(manifest_path, 'r') as f:
         manifest_graph.parse(data=f.read(), format=manifest_fmt)
 
+    for s, p, o in manifest_graph:
+        print(s, p, o)
+
     # Validate manifest against shacl graph
     for err in validate_graph(manifest_graph):
         yield err
-
-    # TODO: Get shapes for optional profiles
-    pass

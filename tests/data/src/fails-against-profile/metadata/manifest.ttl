@@ -1,5 +1,5 @@
-@base <../> .
-@prefix :       <.> .
+@base </> .
+@prefix :       </> .
 @prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh:	    <http://www.w3.org/ns/shacl#> .
@@ -19,53 +19,61 @@
 @prefix owl:    <http://www.w3.org/2002/07/owl#> .
 @prefix doi:    <http://dx.doi.org/> .
 
-<.> a ro:ResearchObject, ore:Aggregation ;
+</> a ro:ResearchObject, ore:Aggregation, :CustomProfileRO ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"
     ] ;
     dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime ;
-    ore:isDescribedBy <.ro/manifest.ttl> ;
-    ore:aggregates <workflows> ,
-        <workflows/workflow1.cwl> ,
-        <.ro/annotations/ann1> .
+    ore:isDescribedBy </metadata/manifest.json> ;
+    ore:aggregates </workflows> ,
+        </workflows/workflow1.cwl> ,
+        </metadata/annotations/ann1> .
 
-<.ro/manifest.ttl> a ro:Manifest ;
-    ore:describes <.> ;
+</metadata/manifest.json> a ro:Manifest ;
+    ore:describes </> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"
     ] ;
     dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
 
-<workflows> a ro:Folder ;
-    ore:aggregates <workflows/workflow1.cwl> .
+</workflows> a ro:Folder ;
+    ore:aggregates </workflows/workflow1.cwl> .
 
 :workflowsProxy a ore:Proxy ;
-    ore:proxyFor <workflows> ;
-    ore:proxyIn <.> ;
+    ore:proxyFor </workflows> ;
+    ore:proxyIn </> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"
     ] ;
     dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
 
-<workflows/workflow1.cwl> a ro:Resource .
+</workflows/workflow1.cwl> a ro:Resource .
 
 :workflow1proxy a ore:Proxy ;
-    ore:proxyFor <workflows/workflow1.cwl> ;
-    ore:proxyIn <.> ;
+    ore:proxyFor </workflows/workflow1.cwl> ;
+    ore:proxyIn </> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"
     ] ;
     dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
 
-<.ro/annotations/ann1> a ro:Annotation ;
-    oa:hasBody <.ro/ann1> ;
-    oa:hasTarget <workflows/workflow1.cwl> ;
+</metadata/annotations/ann1> a ro:Annotation ;
+    oa:hasBody </metadata/ann1> ;
+    oa:hasTarget </workflows/workflow1.cwl> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"
     ] ;
     dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
+
+:CustomProfileRO a rdfs:Class, sh:NodeShape ;
+    sh:targetClass :CustomProfileRO ;
+    sh:property [
+        sh:path <file:///does/not/use/this/path.jpg> ;
+        sh:minCount 1 ;
+        sh:message "RO does not conform"
+    ] .

@@ -20,6 +20,7 @@
 @prefix doi:    <http://dx.doi.org/> .
 
 :CustomProfileRO a rdfs:Class, sh:NodeShape ;
+    sh:targetClass :CustomProfileRO ;
     sh:property [
         sh:path <file:///does/not/use/this/path.jpg> ;
         sh:minCount 1 ;
