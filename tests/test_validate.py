@@ -17,6 +17,7 @@ from rocurate import (
         validate,
         MissingManifestError,
         MissingResourceError,
+        ConstraintViolationError,
     )
 from . import data
 
@@ -30,6 +31,8 @@ class TestValidate(unittest.TestCase):
         errors = validate(data.bundle('empty'))
         assert isinstance(next(errors), MissingManifestError)
 
-    def test_validate_for_missing_remote_resource_fails(self):
-        errors = validate(data.bundle('missing-remote-profile'))
-        assert isinstance(next(errors), MissingResourceError)
+    def test_validate_fails_when_not_conforming_to_profile(self):
+        errors = validate(data.bundle('fails-against-profile'))
+        err = next(errors)
+        assert isinstance(err, ConstraintViolationError)
+        assert err.message == 'RO does not conform'
