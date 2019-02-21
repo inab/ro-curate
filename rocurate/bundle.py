@@ -105,9 +105,6 @@ def validate(ro_path):
     with open(manifest_path, 'r') as f:
         manifest_graph.parse(data=f.read(), format=manifest_fmt)
 
-    for s, p, o in manifest_graph:
-        print(s, p, o)
-
     # Validate manifest against shacl graph
     for err in validate_graph(manifest_graph):
         yield err
