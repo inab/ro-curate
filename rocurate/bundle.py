@@ -14,7 +14,8 @@
 
 import os
 from urllib.error import HTTPError
-from bdbag import bdbag_api as bdbag
+from bdbag import bdbag_api
+from bdbag.bdbagit import BagValidationError
 import rdflib
 from rdflib import RDF
 from rdflib.namespace import DCTERMS
@@ -81,12 +82,15 @@ def validate(ro_path):
     research object
     """
     # Extract bag to temp directory and process the RO as a directory
-    ro_path = bdbag.extract_bag(ro_path, temp=True)
+    ro_path = bdbag_api.extract_bag(ro_path, temp=True)
     ro_path = os.path.abspath(ro_path)
 
     # Validate BagIt RO bag
-    bdbag.validate_bag(ro_path)
-    bdbag.validate_bag_structure(ro_path)
+    try:
+        bdbag_api.validate_bag(ro_path)
+        bdbag_api.validate_bag_structure(ro_path)
+    except BagValidationError as err:
+        yield err
 
     # Get graphs for manifest and main profile
     manifest_graph = rdflib.Graph()
@@ -95,12 +99,14 @@ def validate(ro_path):
     except MissingManifestError as err:
         yield err
         return
+
+    manifest_fmt = 'turtle' if manifest_path.endswith('.ttl') else 'json-ld'
     with open(manifest_path, 'r') as f:
-        manifest_graph.parse(data=f.read(), format='json-ld')
+        manifest_graph.parse(data=f.read(), format=manifest_fmt)
 
     # Validate manifest against shacl graph
     for err in validate_graph(manifest_graph):
         yield err
 
-    # TODO: Get optional graph in dct:conformsTo property of manifest graph
+    # TODO: Get shapes for optional profiles
     pass
