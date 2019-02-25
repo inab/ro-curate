@@ -1,0 +1,6 @@
+- name: Home
+  link: /
+- name: Terms
+  link: /terms
+- name: GitHub
+  link: https://github.com/ResearchObject/ro-curate

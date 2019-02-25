@@ -13,10 +13,11 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: ro-curate
+title: RO Curate
 email: adam.cowdy@student.manchester.ac.uk
 description: >- # this means to ignore newlines until "baseurl:"
-    ro-curate is a validator for BagIt Research Objects.
+    RO Curate is a software tool for ensuring the correctness of
+    Research Objects.
 baseurl: "/ro-curate" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
@@ -24,7 +25,7 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-cayman
+#theme: jekyll-theme-cayman
 plugins:
   - jekyll-feed
 
