@@ -24,7 +24,10 @@ github_username:  jekyll
 
 # Build settings
 markdown: kramdown
-#theme: jekyll-theme-cayman
+
+kramdown:
+  enable_coderay: true
+
 plugins:
   - jekyll-feed
 

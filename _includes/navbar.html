@@ -13,7 +13,7 @@
     <div class="navbar-nav ml-auto">
       <ul class="navbar-nav">
         {% for item in site.data.navigation %}
-          <li class="nav-item{% if item.link == page.url %} active{% endif %}">
+        <li class="nav-item{% if item.link == page.url %} active{% endif %}">
             <a class="nav-link text-uppercase" href="{{ item.link | relative_url }}">
               {% if item.fa-icon %}
                 <i class="{{ item.fa-icon }}"></i>
