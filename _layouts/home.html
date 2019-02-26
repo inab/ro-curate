@@ -1,0 +1,17 @@
+---
+layout: empty
+---
+
+<header class="bg-primary text-light">
+  {% include navbar.html %}
+  <div class="container pt-3 pb-5 mb-5">
+    <h1 class="mb-4">{{ site.description }}</h1>
+    <a href="https://github.com/ResearchObject/ro-curate/archive/master.zip" class="btn btn-light text-primary">
+      <i class="fas fa-download"></i> Download Source
+    </a>
+  </div>
+</header>
+<main class="container">
+  {{ content }}
+</main>
+{% include footer.html %}

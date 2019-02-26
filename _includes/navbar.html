@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand" href="{{ '/' | relative_url }}">RO Curate</a>
   <button class="navbar-toggler"
           type="button"
@@ -14,7 +14,10 @@
       <ul class="navbar-nav">
         {% for item in site.data.navigation %}
           <li class="nav-item{% if item.link == page.url %} active{% endif %}">
-            <a class="nav-link" href="{{ item.link | relative_url }}">
+            <a class="nav-link text-uppercase" href="{{ item.link | relative_url }}">
+              {% if item.fa-icon %}
+                <i class="{{ item.fa-icon }}"></i>
+              {% endif %}
               {{ item.name }} {% if item.link == page.url %}<span class="sr-only">(current)</span>{% endif %}
             </a>
           </li>

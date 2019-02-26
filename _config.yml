@@ -16,8 +16,7 @@
 title: RO Curate
 email: adam.cowdy@student.manchester.ac.uk
 description: >- # this means to ignore newlines until "baseurl:"
-    RO Curate is a software tool for ensuring the correctness of
-    Research Objects.
+    Validation tool for BagIt Research Objects
 baseurl: "/ro-curate" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
