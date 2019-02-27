@@ -11,6 +11,12 @@ To use these terms you may wish to add a prefix in your RDF like so:
 @prefix roc: <{{ site.data.terms.prefix }}>
 ```
 
+The following documentation assumes the following prefixes:
+
+```turtle
+{{ site.data.terms.ext_prefixes }}
+```
+
 {% for term in site.data.terms.properties %}
 ### `{{ term.name }}`
 
@@ -24,6 +30,12 @@ To use these terms you may wish to add a prefix in your RDF like so:
         </a>
       </td>
     </tr>
+    {% for attr in term.attributes %}
+      <tr>
+        <th scope="row">{{ attr.name }}</th>
+        <td>{{ attr.value }}</td>
+      </tr>
+    {% endfor %}
   </tbody>
 </table>
 

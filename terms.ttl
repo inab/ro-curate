@@ -1,0 +1,10 @@
+---
+redirect_from: /terms
+---
+@prefix roc: <https://researchobject.github.io/ro-curate/terms#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+roc:conformsToShacl a rdf:Property ;
+    rdfs:subPropertyOf dct:conformsTo .
