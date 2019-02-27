@@ -11,7 +11,7 @@ To use these terms you may wish to add a prefix in your RDF like so:
 @prefix roc: <{{ site.data.terms.prefix }}>
 ```
 
-The following documentation assumes the following prefixes:
+This documentation assumes the following prefixes:
 
 ```turtle
 {{ site.data.terms.ext_prefixes }}
