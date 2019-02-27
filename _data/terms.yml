@@ -1,0 +1,8 @@
+prefix: https://researchobject.github.io/ro-curate/terms#
+properties:
+  - name: conformsToSHACL
+    description: |-
+      A SHACL graph to which the described resource conforms.
+
+      In this case a SHACL graph is usually a file describing
+      one or more SHACL shapes.
