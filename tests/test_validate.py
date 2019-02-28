@@ -16,7 +16,6 @@ import unittest
 from rocurate import (
         validate,
         MissingManifestError,
-        MissingResourceError,
         ConstraintViolationError,
     )
 from . import data

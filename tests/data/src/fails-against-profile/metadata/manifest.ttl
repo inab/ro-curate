@@ -1,5 +1,5 @@
-@base </> .
-@prefix :       </> .
+@prefix :       <manifest.json#> .
+@prefix roc:    <https://researchobject.github.io/ro-curate/terms#> .
 @prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
 @prefix sh:	    <http://www.w3.org/ns/shacl#> .
@@ -19,7 +19,8 @@
 @prefix owl:    <http://www.w3.org/2002/07/owl#> .
 @prefix doi:    <http://dx.doi.org/> .
 
-</> a ro:ResearchObject, ore:Aggregation, :CustomProfileRO ;
+</> a ro:ResearchObject, ore:Aggregation ;
+    roc:conformsToSHACL </metadata/profile.ttl> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"
@@ -69,11 +70,3 @@
         foaf:name "Adam Cowdy"
     ] ;
     dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime .
-
-:CustomProfileRO a rdfs:Class, sh:NodeShape ;
-    sh:targetClass :CustomProfileRO ;
-    sh:property [
-        sh:path <file:///does/not/use/this/path.jpg> ;
-        sh:minCount 1 ;
-        sh:message "RO does not conform"
-    ] .
