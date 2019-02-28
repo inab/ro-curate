@@ -1,4 +1,4 @@
-@prefix :       <manifest.json#> .
+@prefix :       <manifest.ttl#> .
 @prefix roc:    <https://researchobject.github.io/ro-curate/terms#> .
 @prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs:	<http://www.w3.org/2000/01/rdf-schema#> .
@@ -20,19 +20,19 @@
 @prefix doi:    <http://dx.doi.org/> .
 
 </> a ro:ResearchObject, ore:Aggregation ;
-    roc:conformsToSHACL </metadata/profile.ttl> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"
     ] ;
     dct:created "2018-11-22T12:00:00.000000+00:00"^^xsd:dateTime ;
-    ore:isDescribedBy </metadata/manifest.json> ;
+    ore:isDescribedBy </metadata/manifest.ttl> ;
     ore:aggregates </workflows> ,
         </workflows/workflow1.cwl> ,
         </metadata/annotations/ann1> .
 
-</metadata/manifest.json> a ro:Manifest ;
+</metadata/manifest.ttl> a ro:Manifest ;
     ore:describes </> ;
+    roc:conformsToSHACL </metadata/profile.ttl> ;
     dct:creator [
         a foaf:Person ;
         foaf:name "Adam Cowdy"
