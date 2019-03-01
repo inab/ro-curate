@@ -1,0 +1,16 @@
+---
+redirect_from: /example-profile
+---
+@prefix :       <example-profile#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix ro:     <http://purl.org/wf4ever/ro#> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+
+:CustomROShape a sh:NodeShape ;
+    sh:targetClass ro:ResearchObject ;
+    sh:property [
+        sh:path foaf:homepage ;
+        sh:minCount 1 ;
+        sh:message "RO does not have a homepage"
+    ] .
