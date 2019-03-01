@@ -13,19 +13,15 @@
 #   limitations under the License.
 
 import os
-from urllib.error import HTTPError
 from bdbag import bdbag_api
 from bdbag.bdbagit import BagValidationError
 import rdflib
-from rdflib import RDF
-from rdflib.namespace import DCTERMS
-from rocurate.shapes import PATH as SHAPES_PATH
-from rocurate.graph import validate_graph
+from rocurate.graph import validate_graph, get_graph
 from rocurate.errors import (
         ValidationError,
-        MissingResourceError,
         MissingManifestError,
     )
+from rocurate.util import path_to_uri
 
 _MANIFEST_RELATIVE_PATHS = [
     'metadata/manifest.ttl',
@@ -100,11 +96,7 @@ def validate(ro_path):
         yield err
         return
 
-    manifest_graph = rdflib.Graph()
-    manifest_fmt = 'turtle' if manifest_path.endswith('.ttl') else 'json-ld'
-    with open(manifest_path, 'r') as f:
-        manifest_graph.parse(data=f.read(), format=manifest_fmt)
+    manifest_graph = get_graph(path_to_uri(manifest_path), base=ro_path)
 
-    # Validate manifest against shacl graph
-    for err in validate_graph(manifest_graph):
+    for err in validate_graph(manifest_graph, base=ro_path):
         yield err
