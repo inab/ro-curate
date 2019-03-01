@@ -35,3 +35,9 @@ class TestValidate(unittest.TestCase):
         err = next(errors)
         assert isinstance(err, ConstraintViolationError)
         assert err.message == 'RO does not conform'
+
+    def test_validate_fails_when_not_conforming_to_remote(self):
+        errors = validate(data.bundle('cwlprofile'))
+        err = next(errors)
+        assert isinstance(err, ConstraintViolationError)
+        self.assertEqual(err.message, 'RO does not have a homepage')

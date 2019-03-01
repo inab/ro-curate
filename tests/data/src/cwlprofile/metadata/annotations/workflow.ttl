@@ -1,0 +1,102 @@
+@prefix LinkMergeMethod: <https://w3id.org/cwl/cwl#LinkMergeMethod/> .
+@prefix SchemaDefRequirement: <https://w3id.org/cwl/cwl#SchemaDefRequirement/> .
+@prefix EnumSchema: <https://w3id.org/cwl/salad#EnumSchema/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix CommandOutputBinding: <https://w3id.org/cwl/cwl#CommandOutputBinding/> .
+@prefix ArraySchema: <https://w3id.org/cwl/salad#ArraySchema/> .
+@prefix EnvironmentDef: <https://w3id.org/cwl/cwl#EnvironmentDef/> .
+@prefix Dirent: <https://w3id.org/cwl/cwl#Dirent/> .
+@prefix RecordSchema: <https://w3id.org/cwl/salad#RecordSchema/> .
+@prefix CommandLineTool: <https://w3id.org/cwl/cwl#CommandLineTool/> .
+@prefix ExpressionTool: <https://w3id.org/cwl/cwl#ExpressionTool/> .
+@prefix Directory: <https://w3id.org/cwl/cwl#Directory/> .
+@prefix CommandLineBinding: <https://w3id.org/cwl/cwl#CommandLineBinding/> .
+@prefix EnvVarRequirement: <https://w3id.org/cwl/cwl#EnvVarRequirement/> .
+@prefix DockerRequirement: <https://w3id.org/cwl/cwl#DockerRequirement/> .
+@prefix Workflow: <https://w3id.org/cwl/cwl#Workflow/> .
+@prefix sld:   <https://w3id.org/cwl/salad#> .
+@prefix InlineJavascriptRequirement: <https://w3id.org/cwl/cwl#InlineJavascriptRequirement/> .
+@prefix SoftwarePackage: <https://w3id.org/cwl/cwl#SoftwarePackage/> .
+@prefix SoftwareRequirement: <https://w3id.org/cwl/cwl#SoftwareRequirement/> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix ScatterMethod: <https://w3id.org/cwl/cwl#ScatterMethod/> .
+@prefix Parameter: <https://w3id.org/cwl/cwl#Parameter/> .
+@prefix cwl:   <https://w3id.org/cwl/cwl#> .
+@prefix ResourceRequirement: <https://w3id.org/cwl/cwl#ResourceRequirement/> .
+@prefix File:  <https://w3id.org/cwl/cwl#File/> .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#align_and_tag/reference>
+        cwl:source  <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#reference> .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl#readgroup>
+        cwl:inputBinding  [ CommandLineBinding:position
+                          2 ] ;
+        sld:type          xsd:string .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#bam>
+        sld:type  cwl:File .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl#aligned_bam>
+        cwl:outputBinding  [ CommandOutputBinding:glob
+                          "refAlign.bam" ] ;
+        sld:type           cwl:File .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl#bam>
+        cwl:inputBinding  [ CommandLineBinding:position
+                          1 ] ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#align_and_tag/readgroup>
+        cwl:source  <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#readgroup> .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#readgroup>
+        sld:type  xsd:string .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#align_and_tag/bam>
+        cwl:source  <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#bam> .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#align_and_tag>
+        cwl:in   <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#align_and_tag/bam> , <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#align_and_tag/readgroup> , <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#align_and_tag/reference> ;
+        cwl:out  <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#align_and_tag/aligned_bam> ;
+        cwl:run  <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl> .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl>
+        a                 cwl:Workflow ;
+        rdfs:label        "Unaligned to aligned BAM" ;
+        Workflow:steps    <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#align_and_tag> ;
+        cwl:cwlVersion    cwl:v1.0 ;
+        cwl:inputs        <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#readgroup> , <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#bam> , <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#reference> ;
+        cwl:outputs       <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#tagged_bam> ;
+        cwl:requirements  [ a  cwl:SubworkflowFeatureRequirement ] ;
+        cwl:requirements  [ a  cwl:MultipleInputFeatureRequirement ] ;
+        cwl:requirements  [ a  cwl:ScatterFeatureRequirement ] .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#tagged_bam>
+        cwl:outputSource  <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#align_and_tag/aligned_bam> ;
+        sld:type          cwl:File .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl#reference>
+        cwl:inputBinding  [ CommandLineBinding:position
+                          3 ] ;
+        sld:type          xsd:string .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl#reference>
+        sld:type  xsd:string .
+
+<https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl>
+        a                 cwl:CommandLineTool ;
+        rdfs:label        "align with bwa_mem and tag" ;
+        cwl:arguments     ( [ CommandLineBinding:position  4 ;
+                              cwl:valueFrom                "$(runtime.cores)"
+                            ]
+                          ) ;
+        cwl:baseCommand   ( "/bin/bash" "/usr/bin/alignment_helper.sh" ) ;
+        cwl:cwlVersion    cwl:v1.0 ;
+        cwl:inputs        <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl#reference> , <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl#bam> , <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl#readgroup> ;
+        cwl:outputs       <https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl#aligned_bam> ;
+        cwl:requirements  [ a                             cwl:ResourceRequirement ;
+                            ResourceRequirement:coresMin  8 ;
+                            ResourceRequirement:ramMin    20000
+                          ] ;
+        cwl:stdout        "refAlign.bam" .

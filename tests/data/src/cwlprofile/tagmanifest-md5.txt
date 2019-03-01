@@ -1,0 +1,7 @@
+9e5ad981e0d29adc278f6a294b8c2aca bagit.txt
+ff995b088367d431d610802758f319a0 bag-info.txt
+9bfc6b3e59f89cdb78ac44f4248b6494 manifest-md5.txt
+09e404fcbdd1303fe85a8afc9427fd41 manifest-sha256.txt
+9d773593903923bd101fc7f31754de3c metadata/manifest.json
+c0c73514c2ced6d0dded7794abee420a metadata/annotations/merged.cwl
+5ac914411212bdb268dec228530c3238 metadata/annotations/workflow.ttl

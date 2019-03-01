@@ -1,0 +1,261 @@
+{
+  "@context" : [ "https://w3id.org/bundle/context" ],
+  "id" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl",
+  "@type": ["ro:ResearchObject", "ore:Aggregation"],
+  "manifest" : {
+    "@id": "/metadata/manifest.json",
+    "https://researchobject.github.io/ro-curate/terms#conformsToSHACL": "https://researchobject.github.io/ro-curate/example-profile.ttl"
+  },
+  "createdOn" : "2018-12-03T20:29:32.617Z",
+  "createdBy" : {
+    "uri" : "https://view.commonwl.org",
+    "name" : "Common Workflow Language Viewer"
+  },
+  "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl?format=ro",
+  "retrievedOn" : "2018-12-03T20:29:32.617Z",
+  "retrievedBy" : {
+    "uri" : "https://view.commonwl.org",
+    "name" : "Common Workflow Language Viewer"
+  },
+  "history" : [ "http:/git2prov.org/git2prov?giturl=https:/github.com/genome/cancer-genomics-workflow.git&serialization=PROV-JSON" ],
+  "aggregates" : [ {
+    "uri" : "/workflow/bqsr.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.01Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/bqsr.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:2dcd1ab5-dd7f-44af-9581-d67960a454db",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/align.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.024Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:1060e26b-c689-464b-afe8-45bc51de0fb0",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/downsample.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.038Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/downsample.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:1a5d25b4-aa6a-4de6-a571-15350a897fc0",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/apply_bqsr.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.052Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/apply_bqsr.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:ec26d62a-3c94-4677-a5d4-9a664085aeea",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/index_cram.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.066Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/index_cram.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:44939f09-12fe-4dce-94cd-53eb78f6037e",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/downsample_workflow.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.08Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/downsample_workflow.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:2c014d12-7db8-4dba-b903-e2bc425cc839",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/merge.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.094Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/merge.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:abb5a23a-db1e-4b6d-999a-f5fa36169635",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/workflow.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.108Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/workflow.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:7a6e7c6d-d368-4f41-a755-78b986fc24ad",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/mark_duplicates_and_sort.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.121Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/mark_duplicates_and_sort.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:beefa4eb-43dd-41b7-ae78-f64b745ad969",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/bam_to_cram.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.135Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/bam_to_cram.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:227de515-a4bf-4240-9b9c-86a285a4ceb1",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/position_sort.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.149Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/position_sort.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:22938f9b-65a9-446a-b882-9ccdd77c6cae",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/workflow_no_dup_marking.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.163Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/workflow_no_dup_marking.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:97cf6730-66c9-4649-afa9-49321b48a20a",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/revert_to_fastq.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.177Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/revert_to_fastq.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:f0772213-690c-4cb6-9084-638e77b79ce4",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/name_sort.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.191Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/name_sort.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:22dba241-d5e3-4ace-bdfd-e3b1550e1edf",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/workflow/align_and_tag.cwl",
+    "mediatype" : "text/x-yaml",
+    "createdOn" : "2018-12-03T20:29:33.204Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align_and_tag.cwl?format=raw",
+    "retrievedBy" : {
+      "uri" : "https://view.commonwl.org",
+      "name" : "Common Workflow Language Viewer"
+    },
+    "conformsTo" : "https://w3id.org/cwl/v1.0",
+    "bundledAs" : {
+      "uri" : "urn:uuid:2acf58db-c456-48a8-81ea-554296c51bfa",
+      "folder" : "/workflow/"
+    }
+  }, {
+    "uri" : "/visualisation.png",
+    "mediatype" : "image/png",
+    "createdOn" : "2018-12-03T20:29:33.254Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl?format=png",
+    "bundledAs" : {
+      "uri" : "urn:uuid:30460684-9fd6-49fd-ab6d-bf3ae81fdf04",
+      "folder" : "/"
+    }
+  }, {
+    "uri" : "/visualisation.svg",
+    "mediatype" : "image/svg+xml",
+    "createdOn" : "2018-12-03T20:29:33.272Z",
+    "retrievedFrom" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl?format=svg",
+    "bundledAs" : {
+      "uri" : "urn:uuid:e2344dbd-12d0-4414-8453-3d50452832d2",
+      "folder" : "/"
+    }
+  } ],
+  "annotations" : [ {
+    "@type": "ao:Annotation",
+    "uri" : "urn:uuid:c9ad63bb-a8e7-4657-ab0b-b8a2abb39d77",
+    "about" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl",
+    "content" : "annotations/merged.cwl"
+  }, {
+    "@type": "ao:Annotation",
+    "uri" : "urn:uuid:a6acc7c1-061d-4bf5-9d38-5898e0193a2b",
+    "about" : "https://w3id.org/cwl/view/git/d1ee6a2a323cee7e4af00c7e0b926c2192038e1d/unaligned_bam_to_bqsr/align.cwl",
+    "content" : "annotations/workflow.ttl"
+  } ]
+}
