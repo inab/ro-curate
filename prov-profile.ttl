@@ -1,0 +1,17 @@
+---
+redirect_from: /prov-profile
+---
+@prefix :       <cwl-profile#> .
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix ro:     <http://purl.org/wf4ever/ro#> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix prov:   <http://www.w3.org/ns/prov#> .
+
+:ProvResearchObjectShape a sh:NodeShape ;
+    sh:targetClass ro:ResearchObject ;
+    sh:property [
+        sh:path prov:has_provenance ;
+        sh:minCount 1 ;
+        sh:message "Missing 'history' property"
+    ] .
