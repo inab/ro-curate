@@ -74,7 +74,7 @@ class TestManifestShape(unittest.TestCase):
         assert graph_validates('simple-Manifest-createdOn-1')
         assert not graph_validates('simple-Manifest-createdOn-5')
 
-        assert not graph_validates('simple-Manifest-describes-0')
+        assert graph_validates('simple-Manifest-describes-0')
         assert graph_validates('simple-Manifest-describes-1')
         assert not graph_validates('simple-Manifest-describes-5')
 

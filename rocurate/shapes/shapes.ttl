@@ -81,13 +81,6 @@
     sh:property [
         sh:path ore:describes ;
         sh:nodeKind sh:IRI ;
-        sh:minCount 1 ;
-        sh:maxCount 1 ;
-        sh:message "Missing 'describes' value"
-    ] ;
-    sh:property [
-        sh:path ore:describes ;
-        sh:nodeKind sh:IRI ;
         sh:maxCount 1 ;
         sh:message "More than one 'describes' value"
     ] ;
