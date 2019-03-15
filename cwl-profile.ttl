@@ -24,11 +24,6 @@ redirect_from: /cwl-profile
     ] ;
     sh:property [
         sh:path ore:isDescribedBy ;
-        sh:hasValue </metadata/manifest.json> ;
-        sh:message "Manifest path is not /metadata/manifest.json"
-    ] ;
-    sh:property [
-        sh:path ore:isDescribedBy ;
         sh:class ro:Manifest ;
         sh:message "Target of 'manifest' property should have type ro:Manifest"
     ] .
