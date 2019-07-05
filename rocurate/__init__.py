@@ -29,4 +29,4 @@ from .errors import (
 from .graph import validate_graph
 from .bundle import validate
 
-VERSION = "0.1.1"
+VERSION = "0.2.0"
