@@ -30,7 +30,7 @@ from rocurate import shapes
 ns = {
     'sh': rdflib.Namespace('http://www.w3.org/ns/shacl#'),
     'roc': rdflib.Namespace(
-        'https://researchobject.github.io/ro-curate/terms#'),
+        'https://w3id.org/ro/curate#'),
 }
 
 

@@ -15,7 +15,7 @@
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "ro": "http://purl.org/wf4ever/ro#",
-    "roc": "https://researchobject.github.io/ro-curate/terms#",
+    "roc": "https://w3id.org/ro/curate#",
     "roterms": "http://purl.org/wf4ever/roterms#",
     "sh": "http://www.w3.org/ns/shacl#",
     "xsd": "http://www.w3.org/2001/XMLSchema#"
