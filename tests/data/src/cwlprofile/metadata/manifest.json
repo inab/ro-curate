@@ -4,7 +4,7 @@
   "@type": ["ro:ResearchObject", "ore:Aggregation"],
   "manifest" : {
     "@id": "/metadata/manifest.json",
-    "https://w3id.org/ro/curate#conformsToSHACL": "https://researchobject.github.io/ro-curate/example-profile.ttl"
+    "https://w3id.org/ro/curate#conformsToSHACL": "https://w3id.org/ro/curate/profile/example"
   },
   "createdOn" : "2018-12-03T20:29:32.617Z",
   "createdBy" : {
