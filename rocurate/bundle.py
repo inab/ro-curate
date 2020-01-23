@@ -28,6 +28,14 @@ _MANIFEST_RELATIVE_PATHS = [
     'metadata/manifest.json',
     'data/.ro/manifest.json',
     '.ro/manifest.json',
+    'metadata/ro-crate-metadata.json',
+    'data/.ro/ro-crate-metadata.json',
+    '.ro/ro-crate-metadata.json',
+    '',
+]
+
+_MANIFEST_RELATIVE_PATHS_LD = [
+    'data/.ro/ro-crate-metadata.jsonld',
     '',
 ]
 
@@ -57,12 +65,21 @@ def find_manifest(ro_path):
     :return: `file` object for the most suitable manifest file
     """
     # Create a list of suitable absolute paths to tests for a manifest
+
+    print("HELLO\n")
+    print(ro_path)
+
     manifest_paths = map(lambda p: _ro_bundle_file_path(ro_path, p),
-                         _MANIFEST_RELATIVE_PATHS)
+                         _MANIFEST_RELATIVE_PATHS_LD)
+
+    print(manifest_paths)
 
     # Try each path in `manifest_paths` in order until a manifest is found
     for file_path in manifest_paths:
+        print(file_path)
+        print(os.path.isfile(file_path))
         if os.path.isfile(file_path):
+            print(file_path)
             return file_path
 
     # If no manifest is found, raise exception
@@ -96,7 +113,8 @@ def validate(ro_path):
         yield err
         return
 
+    print("1")
     manifest_graph = get_graph(path_to_uri(manifest_path), base=ro_path)
-
+    print("2")
     for err in validate_graph(manifest_graph, base=ro_path):
         yield err

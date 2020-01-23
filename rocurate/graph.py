@@ -26,6 +26,11 @@ from rocurate.errors import ConstraintViolationError
 from rocurate.util import path_to_uri
 from rocurate import shapes
 
+from rdflib.plugin import register, Parser
+
+register('json-ld', Parser, 'rdflib_jsonld.parser', 'JsonLDParser')
+from rdflib import Graph, URIRef, Literal
+
 # Namespaces
 ns = {
     'sh': rdflib.Namespace('http://www.w3.org/ns/shacl#'),
@@ -69,12 +74,23 @@ def set_file_uri_base(graph, base):
 
 def get_graph(uri, base=None):
     """Returns an RDF graph from a URI."""
-    graph = rdflib.Graph()
-    fmt = guess_format(uri)
+    print("1")
+    #graph = rdflib.Graph()
+    print("2")
+    #fmt = guess_format(uri)
+    print("3")
     with urlopen(uri) as f:
+        print("4")
         data = f.read().decode("utf-8")
-    graph.parse(data=data, format=fmt)
+
+    print("5")
+    # graph.parse(data=data, format=fmt)
+
+    graph = Graph().parse(data=data, format='json-ld')
+
+    print("6")
     if base:
+        print("7")
         set_file_uri_base(graph, base)
     return graph
 
