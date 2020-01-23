@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 
-rm -r build
-mkdir build
+mkdir -p build
 cp -r src/* build/
 cd build
 for dir in *
 do
-    bdbag --update --archive zip $dir
+    bdbag --update --archive zip "$dir"
 done
 

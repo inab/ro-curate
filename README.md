@@ -9,6 +9,7 @@ ro-curate is a tool for validating and refining research objects.
   - bdbag>=1.5.6,<2.0
   - pyshacl
   - rdflib
+  - pytest
   
 Installation
 ------------

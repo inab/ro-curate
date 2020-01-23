@@ -28,7 +28,6 @@ _MANIFEST_RELATIVE_PATHS = [
     'metadata/manifest.json',
     'data/.ro/manifest.json',
     '.ro/manifest.json',
-    'ro-crate-metadata.jsonld',
     '',
 ]
 
