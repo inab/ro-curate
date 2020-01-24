@@ -4,73 +4,119 @@
     {
       "@id": "./",
       "@type": "Dataset",
-      "author": {
-        "@id": "https://orcid.org/0000-0003-2765-8040"
+      "author": [
+        {
+          "@id": "http://orcid.org/0000-0002-8367-6908"
+        },
+        {
+          "@id": "http://orcid.org/0000-0003-0690-4732"
+        },
+        {
+          "@id": "http://orcid.org/0000-0003-3960-0583"
+        },
+        {
+          "@id": "https://orcid.org/0000-0002-6953-3986"
+        }
+      ],
+      "citation": {
+        "@id": "http://dx.doi.org/10.1109/TCYB.2014.2386282"
       },
-      "contactPoint": {
-        "@id": "mailto:Contact data-librarian@uts.edu.au"
-      },
-      "copyrightHolder": "Copyright University of Technology Sydney",
-      "datePublished": "2014-01-31",
-      "description": "This data is from a project to develop a groundwater depletion warning system that leverages information from trees to determine when groundwater is being extracted in excessive quantities. This will help communities better manage and preserve their water resources. The data includes a website that streams dendrometer data from the Tomaree site in a national park in New South Wales, Australia, northeast of Sydney in the Port Stephens local government area. Dendrometers are sensors that measure the expansion and contraction of tree stems that happens every day through transpiration and can assess in real-time how trees respond to the over-extraction of water.",
-      "hasPart": {
-        "@id": "index.html"
-      },
+      "contactPoint": "mailto:data-librarian@uts.edu.au",
+      "datePublished": "2018-03-10",
+      "description": "This demo is the sampling inference for Graph Topic Model, and more details about this model can be found in the following reference:                @ARTICLE{7015568,         author={J. Xuan and J. Lu and G. Zhang and X. Luo},         journal={IEEE Transactions on Cybernetics},         title={Topic Model for Graph Mining},         year={2015},         volume={45},         A Markov chain Monte Carlo (MCMC) algorithm is developed and implemented to inference the Graph Topic Model (GTM). GTM is a probabilistic graphical model for the data represented by graph structure, e.g., chemical formulas or documents.",
       "identifier": [
         "./",
         {
-          "@id": "_:local-id:ocfl_demo:2306e145-aee2-46c7-a8b1-d4dce058b393"
+          "@id": "_:local-id:ocfl_demo:4268d817-30dc-4abd-9cf4-134aea6bcdc0"
         }
       ],
       "license": {
-        "@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"
+        "@id": "https://www.gnu.org/licenses/gpl-3.0.en.html"
       },
-      "name": "Ecohydrology data from Groundwater Dependent Ecosystems Warning system project (Google Impact Challenge 2014 Project)",
-      "publisher": {
-        "@id": "https://ror.org/0384j8v12"
-      }
+      "name": "GTM",
+      "publisher": "University of Technology Sydney"
     },
     {
-      "@id": "41afe45a-1f61-430a-8286-5d81f823791d",
-      "@type": "Place"
+      "@id": "http://dx.doi.org/10.1109/TCYB.2014.2386282",
+      "@type": "ScholarlyArticle",
+      "journal": "IEEE Transactions on Cybernetics",
+      "author": [
+        {
+          "@id": "http://orcid.org/0000-0002-8367-6908"
+        },
+        {
+          "@id": "http://orcid.org/0000-0003-0690-4732"
+        },
+        {
+          "@id": "http://orcid.org/0000-0003-3960-0583"
+        },
+        {
+          "@id": "https://orcid.org/0000-0002-6953-3986"
+        }
+      ],
+      "datePublished": "2015",
+      "identifier": [
+        "http://dx.doi.org/10.1109/TCYB.2014.2386282",
+        "dx.doi.org/10.1109/TCYB.2014.2386282"
+      ],
+      "issn": "2168-2267",
+      "name": "Topic Model for Graph Mining"
     },
     {
-      "@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
-      "@type": "CreativeWork",
-      "description": "This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Australia License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/au/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.",
-      "identifier": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
-      "name": "Attribution-NonCommercial-ShareAlike 3.0 Australia (CC BY-NC-SA 3.0 AU)"
-    },
-    {
-      "@id": "https://orcid.org/0000-0003-2765-8040",
+      "@id": "http://orcid.org/0000-0002-8367-6908",
       "@type": "Person",
-      "identifier": "https://orcid.org/0000-0003-2765-8040",
-      "name": "Professor Derek Eamus"
+      "affiliation": "University of Technology Sydney",
+      "familyName": "Xuan",
+      "givenName": "J",
+      "identifier": "http://orcid.org/0000-0002-8367-6908",
+      "name": "J. Xuan"
     },
     {
-      "@id": "https://ror.org/0384j8v12",
-      "@type": "Organization",
-      "contactPoint": {
-        "@id": "mailto:Contact data-librarian@uts.edu.au"
-      },
-      "identifier": "https://ror.org/0384j8v12",
+      "@id": "http://orcid.org/0000-0003-0690-4732",
+      "@type": "Person",
+      "affiliation": "University of Technology Sydney",
+      "familyName": "Lu",
+      "givenName": "J",
+      "identifier": "http://orcid.org/0000-0003-0690-4732",
+      "name": "J. Lu"
+    },
+    {
+      "@id": "http://orcid.org/0000-0003-3960-0583",
+      "@type": "Person",
+      "affiliation": "University of Technology Sydney",
+      "familyName": "Zhang",
+      "givenName": "G",
+      "identifier": "http://orcid.org/0000-0003-3960-0583",
+      "name": "G. Zhang"
+    },
+    {
+      "@id": "http://uts.edu.au",
+      "identifier": "http://uts.edu.au",
       "name": "University of Technology Sydney"
     },
     {
-      "@id": "index.html",
-      "@type": "File",
-      "contentSize": "5415",
-      "encodingFormat": "Hypertext Markup Language",
-      "fileFormat": "http://www.nationalarchives.gov.uk/PRONOM/fmt/471",
-      "name": "index.html"
+      "@id": "https://orcid.org/0000-0002-6953-3986",
+      "@type": "Person",
+      "affiliation": "University of Technology Sydney",
+      "familyName": "Luo",
+      "givenName": "X",
+      "identifier": "https://orcid.org/0000-0002-6953-3986",
+      "name": "X. Luo"
     },
     {
-      "@id": "mailto:Contact data-librarian@uts.edu.au",
+      "@id": "https://www.gnu.org/licenses/gpl-3.0.en.html",
+      "@type": "CreativeWork",
+      "description": "GNU GENERAL PUBLIC LICENSE\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\nVersion 3, 29 June 2007",
+      "identifier": "https://www.gnu.org/licenses/gpl-3.0.en.html",
+      "name": "GPL 3"
+    },
+    {
+      "@id": "mailto:data-librarian@uts.edu.au ",
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "email": "name@example.com",
-      "identifier": "mailto:Contact data-librarian@uts.edu.au",
-      "name": "Contact data-librarian@uts.edu.au"
+      "email": "data-librarian@uts.edu.au ",
+      "identifier": "mailto:data-librarian@uts.edu.au ",
+      "name": "Contact data-librarian@uts.edu.au "
     },
     {
       "@id": "ro-crate-metadata.jsonld",
@@ -81,9 +127,9 @@
       "identifier": "ro-crate-metadata.jsonld"
     },
     {
-      "@id": "_:local-id:ocfl_demo:2306e145-aee2-46c7-a8b1-d4dce058b393",
+      "@id": "_:local-id:ocfl_demo:4268d817-30dc-4abd-9cf4-134aea6bcdc0",
       "@type": "PropertyValue",
-      "value": "2306e145-aee2-46c7-a8b1-d4dce058b393",
+      "value": "4268d817-30dc-4abd-9cf4-134aea6bcdc0",
       "name": "ocfl_demo"
     }
   ]
