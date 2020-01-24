@@ -1,4 +1,6 @@
-#   Copyright 2018 Adam Cowdy
+#   Copyright 2018 Laura Rodriguez Navas - Barcelona Supercomputing Center
+#
+#   Based on Adam Cowdy implementation
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -26,11 +28,6 @@ from rocurate.errors import ConstraintViolationError
 from rocurate.util import path_to_uri
 from rocurate import shapes
 
-from rdflib.plugin import register, Parser
-
-register('json-ld', Parser, 'rdflib_jsonld.parser', 'JsonLDParser')
-from rdflib import Graph, URIRef, Literal
-
 # Namespaces
 ns = {
     'sh': rdflib.Namespace('http://www.w3.org/ns/shacl#'),
@@ -44,6 +41,7 @@ def guess_format(path):
         'json': 'json-ld',
         'ttl': 'turtle',
         'rdf': 'xml',
+        'jsonld': 'json-ld'  # added json-ld input
     }
     for ext, fmt in formats.items():
         if path.endswith(ext):
@@ -73,25 +71,20 @@ def set_file_uri_base(graph, base):
 
 
 def get_graph(uri, base=None):
-    """Returns an RDF graph from a URI."""
-    print("1")
-    #graph = rdflib.Graph()
-    print("2")
-    #fmt = guess_format(uri)
-    print("3")
+    """
+    Returns an RDF graph from a URI.
+    """
+    graph = rdflib.Graph()
+    fmt = guess_format(uri)
+
     with urlopen(uri) as f:
-        print("4")
         data = f.read().decode("utf-8")
 
-    print("5")
-    # graph.parse(data=data, format=fmt)
+    graph.parse(data=data, format=fmt)
 
-    graph = Graph().parse(data=data, format='json-ld')
-
-    print("6")
     if base:
-        print("7")
         set_file_uri_base(graph, base)
+
     return graph
 
 
@@ -99,8 +92,10 @@ def get_shacl_graph():
     return get_graph(path_to_uri(shapes.PATH))
 
 
-# Yields pairs of RDF paths and paths to SHACL the RDF should conform to.
 def _get_graph_shacl_pairs(graph):
+    """
+    Yields pairs of RDF paths and paths to SHACL the RDF should conform to.
+    """
     for s, _, o in graph.triples((None, ns['roc'].conformsToSHACL, None)):
         yield str(s), str(o)
 
@@ -119,18 +114,15 @@ def validate_rdf_graph(graph, shacl):
 
 
 def validate_graph(graph, base=None):
-    """Validate an rdflib Graph object that encodes a research object.
+    """
+    Validate an rdflib Graph object that encodes a research object.
 
     Checks the Research Object in the graph against a universal shape. Yields
     a value instance of a subclass of ValidationError for every issue found.
 
-    Parameters
-    ----------
+    :params graph: An RDF graph that codes a Research Object.
+    :type graph: rdflib.Graph
 
-    graph : rdflib.Graph
-        An RDF graph that codes a Research Object.
-
-    Yields
     ------
 
     ValidationError
@@ -144,5 +136,8 @@ def validate_graph(graph, base=None):
     for graph_path, shacl_path in _get_graph_shacl_pairs(graph):
         graph = get_graph(graph_path, base=base)
         shacl_graph = get_graph(shacl_path)
+
+        # ValidationError
         for err in validate_rdf_graph(graph, shacl_graph):
             yield err
+            # Each issue is yielded as a value of a subclass of ValidationError.

@@ -1,4 +1,6 @@
-#   Copyright 2018 Adam Cowdy
+#   Copyright 2018 Laura Rodriguez Navas - Barcelona Supercomputing Center
+#
+#   Based on Adam Cowdy implementation
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -13,14 +15,13 @@
 #   limitations under the License.
 
 import os
+
 from bdbag import bdbag_api
-from bdbag.bdbagit import BagValidationError
-import rdflib
-from rocurate.graph import validate_graph, get_graph
+
 from rocurate.errors import (
-        ValidationError,
-        MissingManifestError,
-    )
+    MissingManifestError,
+)
+from rocurate.graph import validate_graph, get_graph
 from rocurate.util import path_to_uri
 
 _MANIFEST_RELATIVE_PATHS = [
@@ -28,14 +29,9 @@ _MANIFEST_RELATIVE_PATHS = [
     'metadata/manifest.json',
     'data/.ro/manifest.json',
     '.ro/manifest.json',
-    'metadata/ro-crate-metadata.json',
-    'data/.ro/ro-crate-metadata.json',
-    '.ro/ro-crate-metadata.json',
-    '',
-]
-
-_MANIFEST_RELATIVE_PATHS_LD = [
+    'metadata/ro-crate-metadata.jsonld',
     'data/.ro/ro-crate-metadata.jsonld',
+    '.ro/ro-crate-metadata.jsonld',
     '',
 ]
 
@@ -49,6 +45,7 @@ def _ro_bundle_file(ro_path, file_path):
     Helper function to get a file in an research object bundle.
     Throws the same exceptions as `open()` if there is a problem opening the
     file.
+
     :param ro_path: path to the root directory of the research object
     :param file_path: relative path to the file within the research object
     :return: `file` object for the file.
@@ -61,25 +58,18 @@ def find_manifest(ro_path):
     """
     Finds the most likely manifest file in a research object.
     If a suitable file is not found a `MissingManifestError` is thrown.
+
     :param ro_path: path to the root directory of the research object
     :return: `file` object for the most suitable manifest file
     """
+
     # Create a list of suitable absolute paths to tests for a manifest
-
-    print("HELLO\n")
-    print(ro_path)
-
     manifest_paths = map(lambda p: _ro_bundle_file_path(ro_path, p),
-                         _MANIFEST_RELATIVE_PATHS_LD)
-
-    print(manifest_paths)
+                         _MANIFEST_RELATIVE_PATHS)
 
     # Try each path in `manifest_paths` in order until a manifest is found
     for file_path in manifest_paths:
-        print(file_path)
-        print(os.path.isfile(file_path))
         if os.path.isfile(file_path):
-            print(file_path)
             return file_path
 
     # If no manifest is found, raise exception
@@ -88,10 +78,9 @@ def find_manifest(ro_path):
 
 def validate(ro_path):
     """
-    Validates the research object at the path `ro_path`, throwing an
-    exception if an error is encountered.
-    Throws urllib.error.HTTPError, ValidationError, MissingManifestError,
-    json.decoder.JSONDecodeError.
+    Validates the research object at the path `ro_path`, throwing an exception if an error is encountered.
+    Throws urllib.error.HTTPError, ValidationError, MissingManifestError, json.decoder.JSONDecodeError.
+
     :param ro_path: relative or absolute path to the root directory of the
     research object
     """
@@ -113,8 +102,6 @@ def validate(ro_path):
         yield err
         return
 
-    print("1")
     manifest_graph = get_graph(path_to_uri(manifest_path), base=ro_path)
-    print("2")
     for err in validate_graph(manifest_graph, base=ro_path):
         yield err

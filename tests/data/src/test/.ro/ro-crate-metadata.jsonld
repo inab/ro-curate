@@ -1,0 +1,90 @@
+{
+  "@context": "https://raw.githubusercontent.com/ResearchObject/ro-crate/master/docs/0.2-DRAFT/context.json",
+  "@graph": [
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "author": {
+        "@id": "https://orcid.org/0000-0003-2765-8040"
+      },
+      "contactPoint": {
+        "@id": "mailto:Contact data-librarian@uts.edu.au"
+      },
+      "copyrightHolder": "Copyright University of Technology Sydney",
+      "datePublished": "2014-01-31",
+      "description": "This data is from a project to develop a groundwater depletion warning system that leverages information from trees to determine when groundwater is being extracted in excessive quantities. This will help communities better manage and preserve their water resources. The data includes a website that streams dendrometer data from the Tomaree site in a national park in New South Wales, Australia, northeast of Sydney in the Port Stephens local government area. Dendrometers are sensors that measure the expansion and contraction of tree stems that happens every day through transpiration and can assess in real-time how trees respond to the over-extraction of water.",
+      "hasPart": {
+        "@id": "index.html"
+      },
+      "identifier": [
+        "./",
+        {
+          "@id": "_:local-id:ocfl_demo:2306e145-aee2-46c7-a8b1-d4dce058b393"
+        }
+      ],
+      "license": {
+        "@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/"
+      },
+      "name": "Ecohydrology data from Groundwater Dependent Ecosystems Warning system project (Google Impact Challenge 2014 Project)",
+      "publisher": {
+        "@id": "https://ror.org/0384j8v12"
+      }
+    },
+    {
+      "@id": "41afe45a-1f61-430a-8286-5d81f823791d",
+      "@type": "Place"
+    },
+    {
+      "@id": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
+      "@type": "CreativeWork",
+      "description": "This work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Australia License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/au/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.",
+      "identifier": "https://creativecommons.org/licenses/by-nc-sa/3.0/au/",
+      "name": "Attribution-NonCommercial-ShareAlike 3.0 Australia (CC BY-NC-SA 3.0 AU)"
+    },
+    {
+      "@id": "https://orcid.org/0000-0003-2765-8040",
+      "@type": "Person",
+      "identifier": "https://orcid.org/0000-0003-2765-8040",
+      "name": "Professor Derek Eamus"
+    },
+    {
+      "@id": "https://ror.org/0384j8v12",
+      "@type": "Organization",
+      "contactPoint": {
+        "@id": "mailto:Contact data-librarian@uts.edu.au"
+      },
+      "identifier": "https://ror.org/0384j8v12",
+      "name": "University of Technology Sydney"
+    },
+    {
+      "@id": "index.html",
+      "@type": "File",
+      "contentSize": "5415",
+      "encodingFormat": "Hypertext Markup Language",
+      "fileFormat": "http://www.nationalarchives.gov.uk/PRONOM/fmt/471",
+      "name": "index.html"
+    },
+    {
+      "@id": "mailto:Contact data-librarian@uts.edu.au",
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "email": "name@example.com",
+      "identifier": "mailto:Contact data-librarian@uts.edu.au",
+      "name": "Contact data-librarian@uts.edu.au"
+    },
+    {
+      "@id": "ro-crate-metadata.jsonld",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      },
+      "identifier": "ro-crate-metadata.jsonld"
+    },
+    {
+      "@id": "_:local-id:ocfl_demo:2306e145-aee2-46c7-a8b1-d4dce058b393",
+      "@type": "PropertyValue",
+      "value": "2306e145-aee2-46c7-a8b1-d4dce058b393",
+      "name": "ocfl_demo"
+    }
+  ]
+}

@@ -1,4 +1,6 @@
-#   Copyright 2018 Adam Cowdy
+#   Copyright 2018 Laura Rodriguez Navas - Barcelona Supercomputing Center
+#
+#   Based on Adam Cowdy implementation
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
