@@ -1,4 +1,8 @@
+six
+avro
+requests
 bdbag>=1.5.6,<2.0
 pyshacl
 rdflib
 pytest
+schema_salad
