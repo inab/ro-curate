@@ -20,7 +20,7 @@ Directly from GitHub:
 git clone -b vre https://github.com/inab/ro-curate.git
 ```
 
-Create the Python environment
+Create the Python environment:
 
 ```
 python3 -m venv ro-curate/venv
