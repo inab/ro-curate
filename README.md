@@ -17,18 +17,13 @@ Installation
 Directly from GitHub:
 
 ```
-cd ${HOME}/user
-
 git clone -b vre https://github.com/inab/ro-curate.git
-
-cd ro-curate
 ```
 
 Create the Python environment
 
 ```
-pyenv-virtualenv 3.6.9 ro-curate
-pyenv activate ro-curate
-pip install -e .
+python3 -m venv ro-curate/venv
+source venv/bin/activate
 pip install -r requirements.txt
 ```

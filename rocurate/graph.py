@@ -20,6 +20,10 @@ This module should not be imported directly, instead import `rocurate`.
 
 """
 
+# changes
+from rdflib import Graph, plugin
+from rdflib.serializer import Serializer
+
 from urllib.request import urlopen
 import re
 import rdflib
@@ -76,11 +80,13 @@ def get_graph(uri, base=None):
     """
     graph = rdflib.Graph()
     fmt = guess_format(uri)
+    print(fmt)
 
     with urlopen(uri) as f:
         data = f.read().decode("utf-8")
 
-    graph.parse(data=data, format=fmt)
+    if fmt == "turtle":  # changes
+        graph.parse(data=data, format=fmt)
 
     if base:
         set_file_uri_base(graph, base)

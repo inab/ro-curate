@@ -1,136 +1,80 @@
 {
-  "@context": "https://raw.githubusercontent.com/ResearchObject/ro-crate/master/docs/0.2-DRAFT/context.json",
+  "@context": "https://w3id.org/ro/crate/1.0/context",
   "@graph": [
-    {
-      "@id": "./",
-      "@type": "Dataset",
-      "author": [
-        {
-          "@id": "http://orcid.org/0000-0002-8367-6908"
-        },
-        {
-          "@id": "http://orcid.org/0000-0003-0690-4732"
-        },
-        {
-          "@id": "http://orcid.org/0000-0003-3960-0583"
-        },
-        {
-          "@id": "https://orcid.org/0000-0002-6953-3986"
-        }
-      ],
-      "citation": {
-        "@id": "http://dx.doi.org/10.1109/TCYB.2014.2386282"
-      },
-      "contactPoint": "mailto:data-librarian@uts.edu.au",
-      "datePublished": "2018-03-10",
-      "description": "This demo is the sampling inference for Graph Topic Model, and more details about this model can be found in the following reference:                @ARTICLE{7015568,         author={J. Xuan and J. Lu and G. Zhang and X. Luo},         journal={IEEE Transactions on Cybernetics},         title={Topic Model for Graph Mining},         year={2015},         volume={45},         A Markov chain Monte Carlo (MCMC) algorithm is developed and implemented to inference the Graph Topic Model (GTM). GTM is a probabilistic graphical model for the data represented by graph structure, e.g., chemical formulas or documents.",
-      "identifier": [
-        "./",
-        {
-          "@id": "_:local-id:ocfl_demo:4268d817-30dc-4abd-9cf4-134aea6bcdc0"
-        }
-      ],
-      "license": {
-        "@id": "https://www.gnu.org/licenses/gpl-3.0.en.html"
-      },
-      "name": "GTM",
-      "publisher": "University of Technology Sydney"
-    },
-    {
-      "@id": "http://dx.doi.org/10.1109/TCYB.2014.2386282",
-      "@type": "ScholarlyArticle",
-      "journal": "IEEE Transactions on Cybernetics",
-      "author": [
-        {
-          "@id": "http://orcid.org/0000-0002-8367-6908"
-        },
-        {
-          "@id": "http://orcid.org/0000-0003-0690-4732"
-        },
-        {
-          "@id": "http://orcid.org/0000-0003-3960-0583"
-        },
-        {
-          "@id": "https://orcid.org/0000-0002-6953-3986"
-        }
-      ],
-      "datePublished": "2015",
-      "identifier": [
-        "http://dx.doi.org/10.1109/TCYB.2014.2386282",
-        "dx.doi.org/10.1109/TCYB.2014.2386282"
-      ],
-      "issn": "2168-2267",
-      "name": "Topic Model for Graph Mining"
-    },
-    {
-      "@id": "http://orcid.org/0000-0002-8367-6908",
-      "@type": "Person",
-      "affiliation": "University of Technology Sydney",
-      "familyName": "Xuan",
-      "givenName": "J",
-      "identifier": "http://orcid.org/0000-0002-8367-6908",
-      "name": "J. Xuan"
-    },
-    {
-      "@id": "http://orcid.org/0000-0003-0690-4732",
-      "@type": "Person",
-      "affiliation": "University of Technology Sydney",
-      "familyName": "Lu",
-      "givenName": "J",
-      "identifier": "http://orcid.org/0000-0003-0690-4732",
-      "name": "J. Lu"
-    },
-    {
-      "@id": "http://orcid.org/0000-0003-3960-0583",
-      "@type": "Person",
-      "affiliation": "University of Technology Sydney",
-      "familyName": "Zhang",
-      "givenName": "G",
-      "identifier": "http://orcid.org/0000-0003-3960-0583",
-      "name": "G. Zhang"
-    },
-    {
-      "@id": "http://uts.edu.au",
-      "identifier": "http://uts.edu.au",
-      "name": "University of Technology Sydney"
-    },
-    {
-      "@id": "https://orcid.org/0000-0002-6953-3986",
-      "@type": "Person",
-      "affiliation": "University of Technology Sydney",
-      "familyName": "Luo",
-      "givenName": "X",
-      "identifier": "https://orcid.org/0000-0002-6953-3986",
-      "name": "X. Luo"
-    },
-    {
-      "@id": "https://www.gnu.org/licenses/gpl-3.0.en.html",
-      "@type": "CreativeWork",
-      "description": "GNU GENERAL PUBLIC LICENSE\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\n\r\r\r\nVersion 3, 29 June 2007",
-      "identifier": "https://www.gnu.org/licenses/gpl-3.0.en.html",
-      "name": "GPL 3"
-    },
-    {
-      "@id": "mailto:data-librarian@uts.edu.au ",
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "email": "data-librarian@uts.edu.au ",
-      "identifier": "mailto:data-librarian@uts.edu.au ",
-      "name": "Contact data-librarian@uts.edu.au "
-    },
     {
       "@id": "ro-crate-metadata.jsonld",
       "@type": "CreativeWork",
       "about": {
         "@id": "./"
-      },
-      "identifier": "ro-crate-metadata.jsonld"
+      }
     },
     {
-      "@id": "_:local-id:ocfl_demo:4268d817-30dc-4abd-9cf4-134aea6bcdc0",
-      "@type": "PropertyValue",
-      "value": "4268d817-30dc-4abd-9cf4-134aea6bcdc0",
-      "name": "ocfl_demo"
+      "@id": "ro-crate-preview.html",
+      "@type": "CreativeWork",
+      "about": {
+        "@id": "./"
+      }
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "Example Workflow",
+      "description": "An example workflow RO Crate",
+      "license": "Apache-2.0",
+      "mainEntity": {
+        "@id": "example_workflow.cwl"
+      },
+      "hasPart": [
+        {
+          "@id": "example_workflow.cwl"
+        },
+        {
+          "@id": "diagram.svg"
+        },
+        {
+          "@id": "README.md"
+        }
+      ]
+    },
+    {
+      "@id": "example_workflow.cwl",
+      "@type": [
+        "File",
+        "SoftwareSourceCode",
+        "Workflow"
+      ],
+      "programmingLanguage": {
+        "@id": "#cwl"
+      },
+      "name": "Example Workflow",
+      "image": {
+        "@id": "diagram.svg"
+      }
+    },
+    {
+      "@id": "diagram.svg",
+      "name": "Example Workflow Diagram",
+      "@type": [
+        "File",
+        "ImageObject",
+        "WorkflowSketch"
+      ]
+    },
+    {
+      "@id": "README.md",
+      "@type": "File"
+    },
+    {
+      "@id": "#cwl",
+      "@type": "ComputerLanguage",
+      "name": "Common Workflow Language",
+      "alternateName": "CWL",
+      "identifier": {
+        "@id": "https://w3id.org/cwl/v1.0/"
+      },
+      "url": {
+        "@id": "https://www.commonwl.org/"
+      }
     }
   ]
 }
