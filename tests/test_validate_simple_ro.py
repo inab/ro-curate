@@ -23,6 +23,6 @@ from . import data
 
 
 class TestValidate(unittest.TestCase):
-    def test_validate_for_simple_correct_bundle_succeeds(self):
+    def test_validate_for_simple_correct_ro_succeeds(self):
         with self.assertRaises(StopIteration):
             next(validate(data.bundle('test')))
