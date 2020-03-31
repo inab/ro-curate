@@ -1,4 +1,4 @@
-#   Copyright 2018 Laura Rodriguez Navas - Barcelona Supercomputing Center
+#   Copyright 2020 Laura Rodriguez Navas - Barcelona Supercomputing Center
 #
 #   Based on Adam Cowdy implementation
 #
